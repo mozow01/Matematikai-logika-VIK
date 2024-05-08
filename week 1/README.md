@@ -14,6 +14,9 @@ Lesz majd szó nullad, első és magasabbrendű logikáról. Ezek rendre a
 Lesz szó 
 
 * szintaktikáról (nyelv vagy programnyelv),
-* szemantikáról (amit jelent) és
+* szemantikáról (amit jelent, intuitívan, halmazelméletileg, gráfelméletileg vagy algebrailag) és
 * pragmatikáról (ahogy használjuk).
 
+Van egy nagyon páratlanul erős kapcsolat a programozás és az informatikus logika között, ez a Curry--Howard-izomorfizmus. De a klasszikus logikai tételek is fontosak, amit meg inkább a halmazokhoz és Boole-értékekhez kapcsolódik.
+
+Nagy segítségünkre lesz a teljes, tiszta, típusos, funkcionális programozási nyelv, a [https://coq.inria.fr/](Coq), amely egyben egy proof assistant is és egyben egy programnyelv tervező szofver is.

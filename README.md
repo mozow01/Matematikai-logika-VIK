@@ -32,14 +32,14 @@ Nagy segítségünkre lesz két teljes, tiszta, típusos, funkcionális programo
 
 Coq:
 
-* 1989 Thierry **Coq**and, Inria France, 1989
+* Thierry **Coq**and, Inria France, 1989-
 * hézagmentes, teljes bizonyítás és verifikáció
 * piacvezető informatikában
 * C helyességbizonyító, 4 szín sejtés, Gödel-tétel bizonyítása.
 * IDE is van hozzá (CoqIDE).
 
 Lean4:
-* **Leon**ardo de Moura, Microsoft Research, 2013
+* **Leon**ardo de Moura, Microsoft Research, 2013-
 * matematikai könyvtára (Mathlib4) a teljes matematikus BSc anyagot tartalmazza
 * Pilinomiális Freiman-Ruzsa sejtés, NF ellentmondásmentessége
 * VSCode

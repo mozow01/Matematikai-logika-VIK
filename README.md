@@ -9,10 +9,10 @@ Nagyon túlzsúfolt, ezért csak a vastagon szedettről lesz szó.
 
 ## Miről szól a tárgy?
 
-A logika a racionális érvelés egyes formális modelljét adja. Sokféle logika van még a racionális érveléseken belül is, mi kettőt tanulunk:
+A logika a racionális érvelés egy formális modelljét adja. Sokféle logika van még a racionális érveléseken belül is, mi kettőt tanulunk:
 
-* klasszikus logika (matematikusok)
-* konstruktivista (informatikusok) 
+* klasszikus logika (matematikusok logikája)
+* konstruktivista (informatikusok és típuselmélészek logikája)
 
 Lesz majd szó nullad, első és magasabbrendű logikáról. Ezek rendre a 
 
@@ -26,15 +26,24 @@ Lesz szó
 * szemantikáról (amit jelent, intuitívan, halmazelméletileg, gráfelméletileg vagy algebrailag) és
 * pragmatikáról (ahogy használjuk).
 
-Van egy nagyon erős kapcsolat a programozás és az informatikus logika között, ez a Curry--Howard-izomorfizmus. De a klasszikus logikai tételek is fontosak, amit meg inkább a halmazokhoz és Boole-értékekhez kapcsolódik.
+Van egy nagyon erős kapcsolat a programozás és az "informatikus" (konstruktív) logika között, ez a Curry--Howard-izomorfizmus. A klasszikus logikai tételek a halmazokhoz és a Boole-értékekhez kapcsolódnak.
 
-Nagy segítségünkre lesz a teljes, tiszta, típusos, funkcionális programozási nyelv, a [Coq](https://coq.inria.fr/), amely egyben egy proof assistant is és egyben egy programnyelv tervező szoftver is. IDE is van hozzá (CoqIDE). Mit kell tudni a Coq-ról?
+Nagy segítségünkre lesz két teljes, tiszta, típusos, funkcionális programozási nyelv, a [Coq](https://coq.inria.fr/) és a [Lean4](https://leanprover.github.io/theorem_proving_in_lean4/), amelyek egyben egy bizonyítás asszisztensek, programnyelvek és programnyelv tervező szoftverek.  
 
-* 1989 Thierry Coqand, Inria France, 1989
-* hézagmentes bizonyítás
-* abszolút bizonyítás
-* piacvezető
-* C helyességbizonyító, 4 szín sejtés, Gödel tétel bizonyítása. 
+Coq:
+
+* 1989 Thierry **Coq**and, Inria France, 1989
+* hézagmentes, teljes bizonyítás és verifikáció
+* piacvezető informatikában
+* C helyességbizonyító, 4 szín sejtés, Gödel-tétel bizonyítása.
+* IDE is van hozzá (CoqIDE).
+
+Lean4:
+* **Leon**ardo de Moura, Microsoft Research, 2013
+* matematikai könyvtára (Mathlib4) a teljes matematikus BSc anyagot tartalmazza
+* Pilinomiális Freiman-Ruzsa sejtés, NF ellentmondásmentessége
+* VSCode
+
 
 
 

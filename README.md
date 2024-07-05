@@ -1,5 +1,7 @@
 #  Alkalmazott matematikai logika
 
+## Követelmény
+
 ## Hivatalos témák
 Nagyon túlzsúfolt, ezért csak a vastagon szedettről lesz szó.
 

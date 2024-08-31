@@ -14,7 +14,7 @@ Alkalmazott (lineáris algebra és matematikai logika) -> (Alkalmazott lineáris
 7. Kategorikus szemantika
 8. Monádok
 9. Kontinuáció
-10. Fagin tétel, automatikus bizonyításkeresés
+10. Fagin-tétel, automatikus bizonyításkeresés
 11. Elsőrendű modellek, Gödel teljességi tétele, kompaktség
 12. Gödel nemteljességi tétele 1
 13. Gödel nemteljességi tétele 2

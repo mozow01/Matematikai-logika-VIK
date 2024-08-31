@@ -171,4 +171,11 @@ Fixpoint denote_sem (t : Term) : bool :=
   | ff => false
  end.
 
+
+Example ex_4 : denote_sem (if_then_else tt ff tt) =  denote_sem (beta_reduct_full (if_then_else tt ff tt) ).
+Proof.
+simpl.
+auto.
+Qed.
+
 Definition w := (fun (n : nat) => true). 

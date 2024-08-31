@@ -1,4 +1,4 @@
-#  Alkalmazott matematikai logika
+#  Matematikai logika
 Alkalmazott lineáris algebra és matematikai logika
 
 (Alkalmazott lineáris algebra) és matematikai logika

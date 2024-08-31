@@ -5,6 +5,21 @@ Alkalmazott lineáris algebra és matematikai logika
 
 Alkalmazott (lineáris algebra és matematikai logika) -> (Alkalmazott lineáris algebra) és (Alkalmazott matematikai logika)
 
+1. Bevezetés
+2. Boole-algebra
+3. Szintaxisfák
+4. Bizonyíthatóság (és, vagy, ha akkor)
+5. Bizonyíthatóság (negáció, Boole-szemantika)
+6. Kvantorok
+7. Monádok
+8. Kontinuáció
+9. Kategorikus szemantika
+10. Fagin tétel, automatikus bizonyításkeresés
+11. Elsőrendű modellek, Gödel teljességi tétele, kompaktség
+12. Gödel nemteljességi tétele 1
+13. Gödel nemteljességi tétele 2
+
+
 ## Követelmény
 
 ### Kötelező tárgyként: 

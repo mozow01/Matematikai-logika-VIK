@@ -11,9 +11,9 @@ Alkalmazott (lineáris algebra és matematikai logika) -> (Alkalmazott lineáris
 4. Bizonyíthatóság (és, vagy, ha akkor)
 5. Bizonyíthatóság (negáció, Boole-szemantika)
 6. Kvantorok
-7. Monádok
-8. Kontinuáció
-9. Kategorikus szemantika
+7. Kategorikus szemantika
+8. Monádok
+9. Kontinuáció
 10. Fagin tétel, automatikus bizonyításkeresés
 11. Elsőrendű modellek, Gödel teljességi tétele, kompaktség
 12. Gödel nemteljességi tétele 1

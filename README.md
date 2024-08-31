@@ -6,7 +6,7 @@ Alkalmazott lineáris algebra és matematikai logika
 Alkalmazott (lineáris algebra és matematikai logika) -> (Alkalmazott lineáris algebra) és (Alkalmazott matematikai logika)
 
 1. Bevezetés
-2. Boole-algebra
+2. Boole-típus, Boole-algebra
 3. Szintaxisfák
 4. Bizonyíthatóság (és, vagy, ha akkor)
 5. Bizonyíthatóság (negáció)

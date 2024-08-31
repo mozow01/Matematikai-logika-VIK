@@ -29,7 +29,7 @@ Túlzsúfolt, csak a vastagon szedet rész lesz.
 A logika a racionális érvelés egy formális modelljét adja. Sokféle logika van még a racionális érveléseken belül is, mi kettőt tanulunk:
 
 * klasszikus logika (matematikusok logikája)
-* konstruktivista (informatikusok és típuselmélészek logikája)
+* konstruktivista (informatikusok logikája)
 
 Lesz majd szó nullad, első és magasabbrendű logikáról. 
 

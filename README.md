@@ -15,7 +15,7 @@ Alkalmazott (lineáris algebra és matematikai logika) -> (Alkalmazott lineáris
 8. Monádok
 9. Kontinuáció
 10. Fagin-tétel, automatikus bizonyításkeresés
-11. Elsőrendű modellek, Gödel teljességi tétele, kompaktség
+11. Elsőrendű modellek, Hilbert-rendszer, Gödel teljességi tétele
 12. Gödel nemteljességi tétele 1
 13. Gödel nemteljességi tétele 2
 

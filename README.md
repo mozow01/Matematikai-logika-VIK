@@ -2,6 +2,23 @@
 
 ## Követelmény
 
+### Kötelező tárgyként: 
+
+10 beadandó Moodle feladat: 20 pont, nincs minimumkövetelmény, de beleszámít a pontszerzésbe.
+1 zh (45 perc): 20 pont, minimumkövetelmény: 8 pont. 
+vizsga (45 perc): 10 pont, minimumkövetelmény: 4 pont.
+
+A jegy a Lineráis algebra részből szerzett pontokból is összeáll.
+
+### Szabadon válaszható tárgyként: 
+
+10 beadandó Moodle feladat: 20 pont, minimumkövetelmény: 8 pont.
+
+### 
+
+
+
+
 ## Hivatalos témák
 Nagyon túlzsúfolt, ezért csak a vastagon szedettről lesz szó.
 

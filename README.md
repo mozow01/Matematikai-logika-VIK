@@ -10,7 +10,7 @@ Alkalmazott (lineáris algebra és matematikai logika) -> (Alkalmazott lineáris
 3. Szintaxisfák
 4. Bizonyíthatóság (és, vagy, ha akkor)
 5. Bizonyíthatóság (negáció)
-6. Kvantorok
+6. Bizonyíthatóság (kvantorok)
 7. Kategorikus szemantika
 8. Monádok
 9. Kontinuáció

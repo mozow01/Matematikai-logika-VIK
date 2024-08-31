@@ -26,7 +26,7 @@ A logika a racionális érvelés egy formális modelljét adja. Sokféle logika 
 * klasszikus logika (matematikusok logikája)
 * konstruktivista (informatikusok és típuselmélészek logikája)
 
-Lesz majd szó nullad, első és magasabbrendű logikáról. Ezek rendre a 
+Lesz majd szó nullad, első és magasabbrendű logikáról. 
 
 * kijelentéslogika,
 * kvantifikáció elmélet és
@@ -35,10 +35,10 @@ Lesz majd szó nullad, első és magasabbrendű logikáról. Ezek rendre a
 Lesz szó 
 
 * szintaktikáról (nyelv vagy programnyelv),
-* szemantikáról (amit jelent, intuitívan, halmazelméletileg, gráfelméletileg vagy algebrailag) és
-* pragmatikáról (ahogy használjuk).
+* szemantikáról (amit jelent, operacionális, denotációs, algebrai) és
+* pragmatikáról (ahogy használjuk, ahogy a programok futnak).
 
-Van egy nagyon erős kapcsolat a programozás és az "informatikus" (konstruktív) logika között, ez a Curry--Howard-izomorfizmus. A klasszikus logikai tételek a halmazokhoz és a Boole-értékekhez kapcsolódnak.
+Van egy nagyon erős kapcsolat a programozás (funkcionális, típusos), a logika (konstruktív) és az algebra (kategóriaelmélet) között, ez a Curry--Howard-Lambek-izomorfizmus.
 
 Nagy segítségünkre lesz két teljes, tiszta, típusos, funkcionális programozási nyelv, a [Coq](https://coq.inria.fr/) és a [Lean4](https://leanprover.github.io/theorem_proving_in_lean4/), amelyek egyben egy bizonyítás asszisztensek, programnyelvek és programnyelv tervező szoftverek.  
 
@@ -53,7 +53,7 @@ Coq:
 Lean4:
 * **Leon**ardo de Moura, Microsoft Research, 2013-
 * matematikai könyvtára (Mathlib4) a teljes matematikus BSc anyagot tartalmazza
-* Pilinomiális Freiman-Ruzsa sejtés, NF ellentmondásmentessége
+* Polinomiális Freiman-Ruzsa sejtés (számtud), NF ellentmondásmentessége (logika)
 * VSCode
 
 

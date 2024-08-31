@@ -1,4 +1,5 @@
 #  Alkalmazott matematikai logika
+Alkalmazott lineáris algebra és matematikai logika -> (Alkalmazott lineáris algebra) és matematikai logika -> Alkalmazott (lineáris algebra és matematikai logika) -> (Alkalmazott lineáris algebra) és (Alkalmazott matematikai logika)
 
 ## Követelmény
 

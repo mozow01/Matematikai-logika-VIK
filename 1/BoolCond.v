@@ -43,6 +43,17 @@ Proof.
   apply T_True.
 Qed.
 
+Example term : ⊢ (if_then_else ff (if_then_else ff ff tt) tt) [:] bool.
+Proof.
+ apply T_If.
+  apply T_False.
+   apply T_If.
+  apply T_False.
+ apply T_False.
+  apply T_True.
+  apply T_True.
+Qed.
+
 Example example2 : ⊢ (if_then_else ff tt ff) [:] bool.
 Proof.
   apply T_If.
@@ -51,16 +62,7 @@ Proof.
   apply T_False.
 Qed.
 
-Example term : ⊢ (if_then_else tt (if_then_else tt ff tt) ff) [:] bool.
-Proof.
-  apply T_If.
-  apply T_True.
-  apply T_If.
-  apply T_True.
-  apply T_False.
-  apply T_True.
-  apply T_False.
-Qed.
+
 
 Definition OR_1 (x y : Term) := if_then_else x tt y. 
 
@@ -94,6 +96,23 @@ Inductive D_equiv : Term -> Term -> Prop :=
   | E_beta_False : forall p q,
       ⊢ (if_then_else ff p q) ≡ q
 where "⊢ t ≡ s" := (D_equiv t s).
+
+Require Import Coq.Setoids.Setoid.
+Require Import Coq.Classes.RelationClasses.
+
+Add Parametric Relation : Term (D_equiv)
+  reflexivity proved by (E_Refl)
+  symmetry proved by (E_Symm)
+  transitivity proved by (E_Trans)
+  as D_equiv_rel.
+
+Example red : ⊢ (if_then_else tt (if_then_else tt ff tt) ff) ≡ ff.
+Proof.
+rewrite E_beta_True.
+rewrite E_beta_True.
+reflexivity.
+Qed.
+
 
 
 Fixpoint beta_reduct (t : Term) : Term :=
@@ -133,6 +152,7 @@ apply E_beta_False.
 *)
 Abort.
 
+
 Eval compute in 
 beta_reduct (if_then_else (if_then_else ff (if_then_else ff ff tt) tt) ff tt ).
 
@@ -170,12 +190,4 @@ Fixpoint denote_sem (t : Term) : bool :=
   | tt => true
   | ff => false
  end.
-
-
-Example ex_4 : denote_sem (if_then_else tt ff tt) =  denote_sem (beta_reduct_full (if_then_else tt ff tt) ).
-Proof.
-simpl.
-auto.
-Qed.
-
-Definition w := (fun (n : nat) => true). 
+ 

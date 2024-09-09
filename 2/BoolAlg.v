@@ -59,6 +59,8 @@ Structure BooleanAlgebra := {
   Or_Neg: forall x : B, Or x (Neg x) = Tru;
 }.
 
+Print bool.
+
 Definition bool_BooleanAlgebra : BooleanAlgebra := {|
     B := bool;
     Tru := true;

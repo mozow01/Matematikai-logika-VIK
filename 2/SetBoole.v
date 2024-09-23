@@ -45,7 +45,7 @@ Lemma seteq_refl : forall {U : Type} (A : SetU U), A ≡ A.
 Proof.
   intros U A.
   unfold seteq.
-  split; intros x H; assumption.
+  split. all: intros x H; assumption.
 Qed.
 
 
@@ -53,8 +53,10 @@ Lemma seteq_sym : forall {U : Type} (A B : SetU U), A ≡ B -> B ≡ A.
 Proof.
   intros U A B H.
   unfold seteq in *.
+  split.
   destruct H as [HAB HBA].
-  split; assumption.
+  all: auto.
+  all: firstorder.
 Qed.
 
 

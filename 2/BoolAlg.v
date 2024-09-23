@@ -2,6 +2,7 @@ Inductive Boole : Set :=
   | igaz : Boole
   | hamis : Boole.
 
+
 Definition és (b1 b2 : Boole) := 
     match b1 with 
       | igaz => match b2 with 
@@ -10,6 +11,25 @@ Definition és (b1 b2 : Boole) :=
                 end
       | hamis => hamis
     end.
+
+Definition és_2 (b1 b2 : Boole) := 
+    match b1 with 
+      | igaz => b2
+      | hamis => hamis
+    end.
+
+Lemma és_2_1 : forall c, (és_2 c hamis) = hamis.
+Proof.
+induction c.
+all: simpl.
+all: auto.
+Qed.
+
+Print eq.
+
+Parameter (c : Boole).
+
+Eval compute in (és_2 c hamis).
 
 Definition vagy b1 b2 :=
     match b1 with 
@@ -22,15 +42,27 @@ Definition vagy b1 b2 :=
 
 Theorem dist_1 : forall b1 b2 b3 : Boole, és b1 (vagy b2 b3) = vagy (és b1 b2) (és b1 b3).
 Proof.
+intros.
 induction b1, b2, b3.
-all: compute; reflexivity.
+all: compute. all: reflexivity.
 Qed.
+
+Print bool.
+
+Print True.
+
+Print False.
 
 Require Import Coq.Bool.Bool.
 
-(* Boole-algebra struktúra *)
+(* Boole-algebra struktúra 
+
+Algebrai elmélet
+
+*)
 Structure BooleanAlgebra := {
   B : Type;
+
   Tru : B; (* true *)
   Fal : B; (* false *)
   And : B -> B -> B; (* conjunction *)
@@ -60,6 +92,8 @@ Structure BooleanAlgebra := {
 }.
 
 Print bool.
+
+Print andb_assoc.
 
 Definition bool_BooleanAlgebra : BooleanAlgebra := {|
     B := bool;

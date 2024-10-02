@@ -18,7 +18,7 @@ intros.
 split.
 ````
 
-A ````split```` taktika létrehozza azt a két ágat a levezetésfában, amely az ````A```` és a ````B```` levéllel rendelkezik és ahhoz szükséges, hogy az ````A/\B```` ezen igazságfeltételeit be tudjuk bizonyítani.
+A ````split```` taktika létrehozza azt a két ágat a levezetésfában, amely az ````A```` és a ````B```` gyökérpontokkal rendelkezik és ahhoz szükséges, hogy az ````A/\B```` ezen igazságfeltételeit be tudjuk bizonyítani.
 
 Előtte:
 

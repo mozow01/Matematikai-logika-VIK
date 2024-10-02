@@ -8,7 +8,7 @@ Inductive and (A B : Prop) : Prop := conj : A -> B -> A /\ B.
 $$ \dfrac{A:\text{Prop}\qquad B:\text{Prop}}
        {A\land B:\text{Prop}}\texttt{conj}$$
 
-#### Példa: split
+#### split
 
 ````coq
 Lemma andcomm : forall A B : Prop, B /\ A -> A /\ B.

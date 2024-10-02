@@ -1,6 +1,4 @@
 # Coq taktikák a Prop típusra
 ## És
-$$ \prftree[r]{\texttt{conj}}
-        {A:\text{Prop}}
-        {B:\text{Prop}}
+$$ \dfrac{{A:\text{Prop}\qquad B:\text{Prop}}
         {A\land B:\text{Prop}}$$

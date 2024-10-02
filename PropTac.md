@@ -54,9 +54,9 @@ enough (H1 : A).
 enough (H2 : B). 
 exact (conj H1 H2).
 ````
-Itt az ````exact (conj H1 H2).```` sor hivatkozik a H1 és H2 levezetések konjunkciójára, de ehhez még később le kell gyártani az A és B egy-egy (H1, H2) bizonyítását. Az exact taktikával kézzel (taktikázás nélkül) meg tudunk adni egy állításnak egy bizonyítását. 
+Itt az ````exact (conj H1 H2).```` sor hivatkozik a H1 és H2 levezetések konjunkciójára, de ehhez még később le kell gyártani az A és B egy-egy (H1, H2) bizonyítását. Az exact taktikával kézzel (taktikázás nélkül) meg tudunk adni egy állításnak egy bizonyítását. A Gallina (Coq natív) egy funkcionális nyelv, ezért a ````conj``` két bemenet kell megetetni a ````H1```` és ````H2```` termekkel. 
 
-exact előtt: 
+````exact```` előtt: 
 
 ````coq
 3 goals

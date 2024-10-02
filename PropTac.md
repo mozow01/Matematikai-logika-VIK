@@ -12,14 +12,11 @@ $$ \dfrac{A:\text{Prop}\qquad B:\text{Prop}}
 
 | First Header  | Second Header |
 | ------------- | ------------- |
-| 
-````coq
+| ````coq
 Lemma andcomm : forall A B : Prop, B /\ A -> A /\ B.
 intros.
 split.
-````
-| 
-````coq
+```` | ````coq
 2 goals
 A, B : Prop
 H : B /\ A
@@ -27,5 +24,4 @@ ______________________________________(1/2)
 A
 ______________________________________(2/2)
 B
-````
-|
+````|

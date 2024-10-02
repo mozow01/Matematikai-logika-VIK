@@ -95,3 +95,8 @@ intuition.
 exact (conj H1 H2).
 Qed.
 ````
+### Kiküszöbölési szabály
+````coq
+and_ind : forall A B P : Prop, (A -> B -> P) -> A /\ B -> P
+````
+

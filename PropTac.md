@@ -1,5 +1,5 @@
 # Coq taktikák a Prop típusra
-A taktikák úgy viszonyulnak a levezetési szabályokhoz, hogy "visszafelé" töltik fel a bizonyításokat. A levezetésfék a gyökérpontból indulnak ki és a fában felfelé haladni a taktikákkal lehet. Amikor kész a bizonyítás, az elágazásokban a levezetési szabályok közvetítik az érvényességet. 
+A taktikák úgy viszonyulnak a levezetési szabályokhoz, hogy "visszafelé" töltik fel a bizonyításokat. A levezetésfák a gyökérpontból indulnak ki és a fában felfelé haladni a taktikákkal lehet ("időutazás vissza az időben"). Amikor kész a bizonyítás, az elágazásokban a levezetési szabályok közvetítik az érvényességet. 
 ## És
 ### Bevezetési szabály:
 ````coq
@@ -16,7 +16,7 @@ intros.
 split.
 ````
 
-A ````split```` taktika létrehozza azt a két ágat a levezetésfában, amely ahhoz szükséges, hogy az és feltételeit be tudjuk bizonyítani.
+A ````split```` taktika létrehozza azt a két ágat a levezetésfában, amely az ````A```` és a ````B```` levéllel rendelkezik és ahhoz szükséges, hogy az ````A/\B```` ezen igazságfeltételeit be tudjuk bizonyítani.
 
 Előtte:
 

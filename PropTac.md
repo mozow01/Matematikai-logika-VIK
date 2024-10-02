@@ -99,4 +99,11 @@ Qed.
 ````coq
 and_ind : forall A B P : Prop, (A -> B -> P) -> A /\ B -> P
 ````
+$$\dfrac{\begin{matrix}
+\\
+\\
+A\land B
+\end{matrix} \quad \begin{matrix}[A,B]\\
+\vdots\\
+P \end{matrix}}{P}$$
 

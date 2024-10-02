@@ -10,9 +10,15 @@ $$ \dfrac{A:\text{Prop}\qquad B:\text{Prop}}
 
 #### Példa: split
 
-| First Header  | Second Header |
-| ------------- | ------------- |
-| ````coq Lemma andcomm : forall A B : Prop, B /\ A -> A /\ B. intros. split. ```` | ````coq
+````coq
+Lemma andcomm : forall A B : Prop, B /\ A -> A /\ B.
+intros.
+split.
+````
+
+A ````split```` taktika létrehozza azt a két ágat a levezetésfában, amely ahhoz szükséges, hogy az és feltételeit be tudjuk bizonyítani:
+
+````coq
 2 goals
 A, B : Prop
 H : B /\ A
@@ -20,4 +26,7 @@ ______________________________________(1/2)
 A
 ______________________________________(2/2)
 B
-````|
+````
+
+
+

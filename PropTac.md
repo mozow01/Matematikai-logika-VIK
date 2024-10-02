@@ -21,6 +21,16 @@ A ````split```` taktika létrehozza azt a két ágat a levezetésfában, amely a
 Előtte:
 
 ````coq
+1 goal
+A, B : Prop
+H : B /\ A
+______________________________________(1/1)
+A /\ B
+````
+
+Utána: 
+
+````coq
 2 goals
 A, B : Prop
 H : B /\ A
@@ -29,15 +39,4 @@ A
 ______________________________________(2/2)
 B
 ````
-
-Utána: 
-
-````coq
-1 goal
-A, B : Prop
-H : B /\ A
-______________________________________(1/1)
-A /\ B
-````
-
 

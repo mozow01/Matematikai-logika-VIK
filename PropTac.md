@@ -11,7 +11,7 @@ $$ \dfrac{A:\text{Prop}\qquad B:\text{Prop}}
 #### split
 
 ````coq
-Lemma andcomm : forall A B : Prop, B /\ A -> A /\ B.
+Lemma andcomm_1 : forall A B : Prop, B /\ A -> A /\ B.
 intros.
 split.
 ````

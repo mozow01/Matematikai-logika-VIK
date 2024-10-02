@@ -54,7 +54,7 @@ enough (H1 : A).
 enough (H2 : B). 
 exact (conj H1 H2).
 ````
-Itt az ````exact (conj H1 H2).```` sor hivatkozik a H1 és H2 levezetések konjunkciójára, de ehhez még később le kell gyártani az A és B egy-egy (H1, H2) bizonyítását.
+Itt az ````exact (conj H1 H2).```` sor hivatkozik a H1 és H2 levezetések konjunkciójára, de ehhez még később le kell gyártani az A és B egy-egy (H1, H2) bizonyítását. Az exact taktikával kézzel (taktikázás nélkül) meg tudunk adni egy állításnak egy bizonyítását. 
 
 exact előtt: 
 

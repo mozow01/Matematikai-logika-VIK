@@ -10,6 +10,8 @@ $$ \dfrac{A:\text{Prop}\qquad B:\text{Prop}}
 
 #### split
 
+A ````split```` taktika a ````apply conj.```` parancs rövidítése, amely a conj levezetési szabály alkalmazhatóságát kéri számond rajtunk: be tudjuk-e az és két igazságfeltételét bizonyítani. 
+
 ````coq
 Lemma andcomm_1 : forall A B : Prop, B /\ A -> A /\ B.
 intros.

@@ -41,7 +41,7 @@ A
 ______________________________________(2/2)
 B
 ````
-#### Másik megoldás: enough, assert
+#### Kézi megoldás: enough, assert
 
 Ezt a két ágat az ````enough```` paranccsal is létre tudjuk hozni külön "kézzel", majd össze tudjuk kapcsolani conj-jal: 
 
@@ -84,7 +84,7 @@ A
 Az ````assert````-tel nem ússzuk meg azt, hogy a konjunkció tényezőit igazoló levezetéseket tényéleg el kell készítenünk maradéktalanul és utána fűzhetjük össze conj-jal. Lent az ````intuition```` taktika egy kicsit csalás, mert ez egy automatikus bizonyító modul, ami éppen ezt a picit levezetést magától is megcsinálja, de a követkető pontban meglesznek ezek is. 
 
 ````coq
-Lemma andcomm'' : forall A B : Prop, B /\ A -> A /\ B.
+Lemma andcomm_1'' : forall A B : Prop, B /\ A -> A /\ B.
 intros.
 assert (H1 : A).
 intuition. 

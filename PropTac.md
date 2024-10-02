@@ -10,13 +10,15 @@ $$ \dfrac{A:\text{Prop}\qquad B:\text{Prop}}
 
 #### Példa: split
 
-|--------------------|--------------------------|
+| First Header  | Second Header |
+| ------------- | ------------- |
+| 
 ````coq
 Lemma andcomm : forall A B : Prop, B /\ A -> A /\ B.
 intros.
 split.
 ````
-|
+| 
 ````coq
 2 goals
 A, B : Prop
@@ -26,6 +28,4 @@ A
 ______________________________________(2/2)
 B
 ````
-|--------------------|---------------------|
-
-`````
+|

@@ -15,6 +15,7 @@ $$ \dfrac{A:\text{Prop}\qquad B:\text{Prop}}
 Lemma andcomm : forall A B : Prop, B /\ A -> A /\ B.
 intros.
 split.
+````
 |
 ````coq
 2 goals

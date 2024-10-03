@@ -7,6 +7,7 @@ Ebben a pontban azt nézzük meg, hogy egy olyan állítást, amelyek a fő oper
 ````coq
 Inductive and (A B : Prop) : Prop := conj : A -> B -> A /\ B.
 ````
+
 $$ \dfrac{A:\text{Prop}\qquad B:\text{Prop}}
        {A\land B:\text{Prop}}\texttt{conj}$$
 
@@ -97,9 +98,11 @@ Qed.
 ````
 ### Kiküszöbölési szabály
 Az indukciós vagy eliminációs szabály egy jellegzetes esetet mutatva arra enged következtetni, hogy ha egy konjunkcióról tudjuk, hogy igaz, akkor belőle egy harmadik állítást mikor tudunk levezetni.
+
 ````coq
 and_ind : forall A B P : Prop, (A -> B -> P) -> A /\ B -> P
 ````
+
 $$\dfrac{\begin{matrix}
 \quad
 \\
@@ -109,6 +112,7 @@ A\land B
 \end{matrix} \quad \begin{matrix}[A,B]\\
 \vdots\\
 P \end{matrix}}{P}\texttt{and\_ind}$$
+
 Az "és" konnektívumnak van két jellegzetes **destruktora,** amelyek az első és a második tényezőjét olvassák ki egy "és" típusú adatból:
 ````coq
 

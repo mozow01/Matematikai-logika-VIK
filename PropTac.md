@@ -96,6 +96,7 @@ exact (conj H1 H2).
 Qed.
 ````
 ### Kiküszöbölési szabály
+Az indukciós vagy eliminációs szabály egy jellegzetes esetet mutatva arra enged következtetni, hogy ha egy konjunkcióról tudjuk, hogy igaz, akkor belőle egy harmadik állítást mikor tudunk levezetni.
 ````coq
 and_ind : forall A B P : Prop, (A -> B -> P) -> A /\ B -> P
 ````
@@ -107,5 +108,14 @@ $$\dfrac{\begin{matrix}
 A\land B
 \end{matrix} \quad \begin{matrix}[A,B]\\
 \vdots\\
-P \end{matrix}}{P}$$
+P \end{matrix}}{P}\texttt{and\_ind}$$
+Az "és" konnektívumnak van két jellegzetes **destruktora,** amelyek az első és a második tényezőjét olvassák ki egy "és" típusú adatból:
+````coq
+
+````
+$$\dfrac{
+A\land B
+}{A}\texttt{proj_fst}\quad\dfrac{
+A\land B
+}{B}\texttt{proj_snd} $$
 

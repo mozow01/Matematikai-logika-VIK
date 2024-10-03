@@ -119,7 +119,7 @@ Az "és" konnektívumnak van két jellegzetes **destruktora,** amelyek az első 
 ````
 $$\dfrac{
 A\land B
-}{A}\texttt{projfst}\quad\dfrac{
+}{A}\quad\dfrac{
 A\land B
-}{B}\texttt{projsnd} $$
+}{B}$$
 

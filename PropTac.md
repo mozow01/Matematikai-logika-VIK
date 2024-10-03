@@ -111,7 +111,7 @@ $$\dfrac{\begin{matrix}
 A\land B
 \end{matrix} \quad \begin{matrix}[A,B]\\
 \vdots\\
-P \end{matrix}}{P}\texttt{and}\quad\texttt{ind}$$
+P \end{matrix}}{P}\texttt{andind}$$
 
 Az "és" konnektívumnak van két jellegzetes **destruktora,** amelyek az első és a második tényezőjét olvassák ki egy "és" típusú adatból:
 ````coq
@@ -119,7 +119,7 @@ Az "és" konnektívumnak van két jellegzetes **destruktora,** amelyek az első 
 ````
 $$\dfrac{
 A\land B
-}{A}\texttt{proj}\quad\texttt{fst}\quad\dfrac{
+}{A}\texttt{projfst}\quad\dfrac{
 A\land B
-}{B}\texttt{proj}\quad\texttt{snd} $$
+}{B}\texttt{projsnd} $$
 

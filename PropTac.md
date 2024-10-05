@@ -114,12 +114,25 @@ A\land B
 P \end{matrix}}{P}\texttt{andind}$$
 
 Az "és" konnektívumnak van két jellegzetes **destruktora,** amelyek az első és a második tényezőjét olvassák ki egy "és" típusú adatból:
-````coq
 
-````
 $$\dfrac{
 A\land B
 }{A}\quad\dfrac{
 A\land B
 }{B}$$
 
+Ez a Prop típusra nincs megírva, bár seperc alatt levezethető:
+
+````coq
+fstP := fun (A B : Prop) (H : A /\ B) =>
+              match H with
+              | conj x _ => x
+              end
+     : forall A B : Prop, A /\ B -> A
+
+sndP := fun (A B : Prop) (H : A /\ B) =>
+              match H with
+              | conj _ y => y
+              end
+     : forall A B : Prop, A /\ B -> B
+````

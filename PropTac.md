@@ -5,7 +5,23 @@ A taktikák úgy viszonyulnak a levezetési szabályokhoz, hogy "visszafelé" t�
 
 A Coq funcionális programozási nyelv, ezért alapvető jelentősségű a függvénytípus, függvényképzés, függvény alkalmazás. 
 
-$$\dfrac{f: A\to B\qquad a: A}{ f b: B}$$
+### Kiküszübölési szabály
+
+$$\dfrac{f: A\to B\qquad a: A}{ f a: B}$$
+
+A taktikák szintjén, az Ltac nyelvben ez a kövezkezőképpen mozgósítható:
+
+````Coq
+apply f.
+```
+vagy közvetlenül:
+````Coq
+exact (f a).
+````
+
+### Bevezetési szabály
+
+$$\dfrac{a: A\vdash y:B}{ fun (x : A) => (y:B) : A\to B}$$
 
 ## És
 ### Bevezetési szabály

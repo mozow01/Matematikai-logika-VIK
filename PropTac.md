@@ -1,5 +1,10 @@
 # Coq taktikák a Prop típusra
 A taktikák úgy viszonyulnak a levezetési szabályokhoz, hogy "visszafelé" töltik fel a bizonyításokat. A levezetésfák a gyökérpontból indulnak ki és a fában felfelé haladni a taktikákkal lehet ("időutazás vissza az időben"). Amikor kész a bizonyítás, az elágazásokban a levezetési szabályok közvetítik az érvényességet. 
+
+## Ha...akkor
+
+
+
 ## És
 ### Bevezetési szabály
 Ebben a pontban azt nézzük meg, hogy egy olyan állítást, amelyek a fő operátora az "és", hogyan igazolunk elsődlegesen. Erre való az "és" bevezetési szabálya (spéci esetben másképp is lehet, de mindig van olyan bizonyítás, amelyben ahhoz, hogy az "és" igaz, így érkezünk meg (Normálformatétel).)

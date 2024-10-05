@@ -3,7 +3,9 @@ A taktikák úgy viszonyulnak a levezetési szabályokhoz, hogy "visszafelé" t�
 
 ## Ha...akkor
 
+A Coq funcionális programozási nyelv, ezért alapvető jelentősségű a függvénytípus, függvényképzés, függvény alkalmazás. 
 
+$$\dfrac{f: A\to B\qquad a: A}{ f\;b\; :\; B}$$
 
 ## És
 ### Bevezetési szabály

@@ -173,3 +173,5 @@ B /\ A
 ````
 
 Mivel az "és" az egyik legegyszerűbb típus, ezért a fenti taktikát még az ````elim H````/````induction H```` (jelentése: az indukciós szabály alkalmazása úgy, hogy a P közvetlenül a Goal lesz) és az ````inversion H```` (jelentése: mit tehetünk fel, ha a konnektívum, jelen esetben az "és" igaz) is helyettesíti, de csak azért mert ebben az esetben ők egybeesnek. Más típusoknál az ````elim H````/````induction H```` és az ````inversion H```` nagyon nem esnek egybe...
+
+HF: az "és" asszociatív szabályának igazolása.

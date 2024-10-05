@@ -13,7 +13,7 @@ A taktikák szintjén, az Ltac nyelvben ez a kövezkezőképpen mozgósítható:
 
 ````Coq
 apply f.
-```
+````
 vagy közvetlenül:
 ````Coq
 exact (f a).

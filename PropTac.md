@@ -116,7 +116,9 @@ A\land B
 \vdots\\
 P \end{matrix}}{P}\texttt{andind}$$
 
-Az "és" konnektívumnak van két jellegzetes **destruktora,** amelyek az első és a második tényezőjét olvassák ki egy "és" típusú adatból:
+Az ````apply and_ind with (P:="...") in H```` parancs szolgál az indukciós szabály általános használatára. 
+
+Az indukciós szabálynál van egy konkrétabb, amelyet inkább használunk, a destruktor. Az "és" konnektívumnak van két jellegzetes **destruktora,** amelyek az első és a második tényezőjét olvassák ki egy "és" típusú adatból:
 
 $$\dfrac{
 A\land B
@@ -139,7 +141,8 @@ sndP := fun (A B : Prop) (H : A /\ B) =>
               end
      : forall A B : Prop, A /\ B -> B
 ````
-Nem kell azonban egyiket se használni, mert a destruktorok által visszaadott termek mind legyártódnak és feltételként építődnek be a ````destruct H as [H1 H2]```` taktikával:
+
+Nem kell azonban ezeket se használni, mert a destruktorok által visszaadott termek mind legyártódnak és feltételként építődnek be a ````destruct H as [H1 H2]```` taktikával:
 
 ````coq
 Lemma andcomm_2 : forall A B : Prop, A /\ B -> B /\ A.
@@ -169,3 +172,4 @@ ______________________________________(1/1)
 B /\ A
 ````
 
+Mivel az "és" az egyik legegyszerűbb típus, ezért a fenti taktikát még az ````elim H````/````induction H```` és az ````inversion H```` is helyettesíti, de csak azért mert ebben az esetben ők egybeesnek. Más típusoknál az ````elim H````/````induction H```` és az ````inversion H```` nagyon nem esnek egybe...

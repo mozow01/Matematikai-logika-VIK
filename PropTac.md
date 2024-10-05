@@ -17,6 +17,7 @@ A ````split```` taktika a ````apply conj```` parancs rövidítése, amely a conj
 
 ````coq
 Lemma andcomm_1 : forall A B : Prop, B /\ A -> A /\ B.
+Proof.
 intros.
 split.
 ````
@@ -50,6 +51,7 @@ Ezt a két ágat az ````enough```` paranccsal is létre tudjuk hozni külön "k�
 
 ````coq
 Lemma andcomm_1' : forall A B : Prop, B /\ A -> A /\ B.
+Proof.
 intros.
 enough (H1 : A). 
 enough (H2 : B). 
@@ -88,6 +90,7 @@ Az ````assert````-tel nem ússzuk meg azt, hogy a konjunkció tényezőit igazol
 
 ````coq
 Lemma andcomm_1'' : forall A B : Prop, B /\ A -> A /\ B.
+Proof.
 intros.
 assert (H1 : A).
 intuition. 
@@ -136,3 +139,33 @@ sndP := fun (A B : Prop) (H : A /\ B) =>
               end
      : forall A B : Prop, A /\ B -> B
 ````
+Nem kell azonban egyiket se használni, mert a destruktorok által visszaadott termek mind legyártódnak és feltételként építődnek be a ````destruct H as [H1 H2]```` taktikával:
+
+````coq
+Lemma andcomm_2 : forall A B : Prop, A /\ B -> B /\ A.
+Proof.
+intros.
+destruct H as [H1 H2].
+````
+
+````destruct```` előtt: 
+
+````coq
+1 goal
+A, B : Prop
+H : A /\ B
+______________________________________(1/1)
+B /\ A
+````
+
+és után: 
+
+````coq
+1 goal
+A, B : Prop
+H1 : A
+H2 : B
+______________________________________(1/1)
+B /\ A
+````
+

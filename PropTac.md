@@ -21,7 +21,7 @@ exact (f a).
 
 ### Bevezetési szabály
 
-$$\dfrac{a: A\vdash y:B}{ \text{fun } (x : A) => (y:B) : A\to B}$$
+$$\dfrac{a: A\vdash y:B}{(\text{fun } (x : A) => (y:B)): A\to B}$$
 
 ## És
 ### Bevezetési szabály

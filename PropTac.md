@@ -3,9 +3,9 @@ A taktikák úgy viszonyulnak a levezetési szabályokhoz, hogy "visszafelé" t�
 
 ## Ha...akkor
 
-A Coq funcionális programozási nyelv, ezért alapvető jelentősségű a függvénytípus, függvényképzés, függvény alkalmazás. 
+A Coq funcionális programozási nyelv, ezért alapvető jelentősségű a függvénytípus, függvényképzés, függvény alkalmazás. A Coq-ban alapvető, belpített típus a függvénytípus, azért ennek a szabályai nem fedhetők fel úgy, ahogy a származtatott (definiált) induktív típusoknál. Ez kissé nehézséget jelent, mert se a Prop, se a Set, se a Type, se a ````forall T:A, U```` alakú termek esetén nem printelhetők ki ezek a szabályok. Minden olyan, amely az Inductive nevű induktív definícióval lett definiálva, igen (maga az Inductive definíció is induktív típus, az ő definíciója se érhető el). A dokumentációban persze benne vannak a megfelelő szabályok https://coq.inria.fr/doc/V8.20.0/refman/language/cic.html    
 
-### Kiküszübölési szabály
+### Kiküszöbölési szabály
 
 $$\dfrac{f: A\to B\qquad a: A}{ f a: B}$$
 

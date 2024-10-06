@@ -49,7 +49,40 @@ exact (f a).
 Qed.
 ````
 
+````Coq
+Lemma imp1 : forall A B : Prop, A -> A.
+Proof.
+intros.
+exact H.
+Show Proof.
+Qed.
+````
 
+````Coq
+imp1 = fun (A _ : Prop) (H : A) => H : forall A : Prop, Prop -> A -> A
+````
+
+````Coq
+Lemma imp2 : forall A B : Prop, A -> (B -> A).
+Proof.
+intros.
+exact H.
+Show Proof.
+Qed.
+````
+
+````Coq
+Lemma imp2 : forall A B : Prop, A -> (B -> A).
+Proof.
+intros.
+exact H.
+Show Proof.
+Qed.
+````
+
+````Coq
+imp2 = fun (A B : Prop) (H : A) (_ : B) => H : forall A B : Prop, A -> B -> A
+````
 
 ## És
 ### Bevezetési szabály

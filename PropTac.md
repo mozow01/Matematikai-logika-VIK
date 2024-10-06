@@ -6,6 +6,7 @@ A taktikák úgy viszonyulnak a levezetési szabályokhoz, hogy "visszafelé" t�
 A Coq funcionális programozási nyelv, ezért alapvető jelentősségű a függvénytípus, függvényképzés, függvény alkalmazás. A Coq-ban alapvető, belpített típus a függvénytípus, azért ennek a szabályai nem fedhetők fel úgy, ahogy a származtatott (definiált) induktív típusoknál. Ez kissé nehézséget jelent, mert se a Prop, se a Set, se a Type, se a ````forall T:A, U```` alakú termek esetén nem printelhetők ki ezek a szabályok. Minden olyan, amely az Inductive nevű induktív definícióval lett definiálva, igen (maga az Inductive definíció is induktív típus, az ő definíciója se érhető el). A dokumentációban persze benne vannak a megfelelő szabályok https://coq.inria.fr/doc/V8.20.0/refman/language/cic.html    
 
 ### Kiküszöbölési szabály
+(Modus ponens)
 
 $$\dfrac{f: A\to B\qquad a: A}{ f a: B}$$
 
@@ -20,8 +21,35 @@ exact (f a).
 ````
 
 ### Bevezetési szabály
+(Dedukciótétel)
 
 $$\dfrac{x: A\vdash y:B}{(\text{fun } (x : A) => (y:B)): A\to B}$$
+
+Az ehhez kapcsolódó taktika a jól ismert 
+````Coq
+intros.
+````
+
+### Példák
+
+````Coq
+Lemma mp : forall A B : Prop, A -> (A -> B) -> B.
+Proof.
+intros.
+apply H0.
+assumption.
+Qed.
+`````
+
+````Coq
+Lemma mp' : forall A B : Prop, A -> (A -> B) -> B.
+Proof.
+intros A B a f.
+exact (f a).
+Qed.
+````
+
+
 
 ## És
 ### Bevezetési szabály

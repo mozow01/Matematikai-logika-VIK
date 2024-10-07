@@ -397,11 +397,11 @@ Proof.
 Qed.
 ````
 
-Destruktorok
+#### Destruktorok
 
-A diszjunkció destruktorai az egyes ágak kezelését teszik lehetővé. Bár a or típus esetében nincs explicit destruktor, a mintaillesztés (match kifejezés) segítségével elérhetjük az egyes ágakat.
+A diszjunkció destruktorai az egyes ágak kezelését teszik lehetővé. Bár az or típus esetében nincs explicit destruktor, a mintaillesztés (match kifejezés) segítségével elérhetjük az egyes ágakat.
 
-#### Példa: Mintaillesztés
+Példa: Mintaillesztés
 
 ````coq
 Definition or_swap (A B : Prop) (H : A \/ B) : B \/ A :=

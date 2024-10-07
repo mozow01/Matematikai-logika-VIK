@@ -263,7 +263,7 @@ HF: az "és" asszociatív szabályának igazolása.
 # Vagy
 ## Bevezetési szabály
 
-$$\frac{A}{A∨B}\text{or\_introl}\qquad \frac{B}{A∨B}\text{or\_intror}$$
+$$\frac{A}{A∨B}\text{or intro l}\qquad \frac{B}{A∨B}\text{or intro r}$$
 
 ````coq
 Inductive or (A B : Prop) : Prop :=
@@ -271,92 +271,64 @@ Inductive or (A B : Prop) : Prop :=
   | or_intror : B -> A \/ B.
 ````
 
+### left és right taktikák
 
+A left és right taktikák az apply or_introl és apply or_intror parancsok rövidítései. 
 
-left és right taktikák
-
-A left és right taktikák a apply or_introl és apply or_intror parancsok rövidítései. Ezekkel a taktikákkal jelezzük, hogy melyik oldalát kívánjuk bizonyítani a diszjunkciónak.
 Példa:
 
-coq
-
+````coq
 Lemma or_example : forall A B : Prop, A -> A \/ B.
 Proof.
   intros.
   left.
   exact H.
 Qed.
+````
 
-A left taktika után a célunk az A bizonyítása lesz.
+Left előtt:
 
-Előtte:
-
-coq
-
+````coq
 1 goal
 A, B : Prop
 H : A
 ______________________________________(1/1)
 A \/ B
 
-A left taktika alkalmazása után:
+left után:
 
-coq
-
+````coq
 1 goal
 A, B : Prop
 H : A
 ______________________________________(1/1)
 A
+````
 
-Most már csak az A állítást kell igazolnunk, amit a exact H taktikával megtehetünk.
-Másik példa:
+### Kézi megoldás: ````apply or_introl```` és ````apply or_intror````
 
-coq
+A ````left```` és ````right```` taktikák helyett közvetlenül is alkalmazhatjuk a bevezetési szabályokat.
 
-Lemma or_example2 : forall A B : Prop, B -> A \/ B.
-Proof.
-  intros.
-  right.
-  exact H.
-Qed.
-
-Itt a right taktika után a célunk a B bizonyítása lesz.
-Kézi megoldás: apply or_introl és apply or_intror
-
-A left és right taktikák helyett közvetlenül is alkalmazhatjuk a bevezetési szabályokat.
-
-coq
-
-Lemma or_example_manual : forall A B : Prop, A -> A \/ B.
-Proof.
-  intros.
-  apply or_introl.
-  exact H.
-Qed.
-
-Vagy:
-
-coq
-
-Lemma or_example_manual2 : forall A B : Prop, B -> A \/ B.
+````coq
+Lemma or_example_manual : forall A B : Prop, B -> A \/ B.
 Proof.
   intros.
   apply or_intror.
   exact H.
 Qed.
+````
 
-Kiküszöbölési szabály
+#### Kiküszöbölési szabály
 
-A diszjunkció kiküszöbölési (eliminációs) szabálya azt mondja ki, hogy ha van egy A \/ B állításunk, és mind A-ból, mind B-ből le tudunk vezetni egy P állítást, akkor P igaz.
+A vagy kiküszöbölési (eliminációs, indukciós) szabálya azt mondja ki, hogy ha A \/ B levezethető, és mind A-ból, mind B-ből le tudunk vezetni P-t, akkor P is levezethető.
 
-coq
+$$\frac{A\lor B\quad A\to P \qquad A\to P}{P}\text{or ind}$$
 
+````coq
 or_ind : forall A B P : Prop, (A -> P) -> (B -> P) -> A \/ B -> P
+````
 
-Ennek a szabálynak a logikai leírása:
-A∨B[A]⊢P[B]⊢PPor_ind
-PA∨B[A]⊢P[B]⊢P​​or_ind
+
 destruct taktika
 
 A destruct taktika segítségével a diszjunkciót két esetre bontjuk, és mindkét esetet külön bizonyítjuk.

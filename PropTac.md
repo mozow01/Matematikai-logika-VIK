@@ -318,24 +318,22 @@ Proof.
 Qed.
 ````
 
-#### Kiküszöbölési szabály
+### Kiküszöbölési szabály
 
 A vagy kiküszöbölési (eliminációs, indukciós) szabálya azt mondja ki, hogy ha A \/ B levezethető, és mind A-ból, mind B-ből le tudunk vezetni P-t, akkor P is levezethető.
 
-$$\frac{A\lor B\quad A\to P \qquad A\to P}{P}\text{or ind}$$
+$$\frac{A\lor B\quad A\to P \qquad B\to P}{P}\text{or ind}$$
 
 ````coq
 or_ind : forall A B P : Prop, (A -> P) -> (B -> P) -> A \/ B -> P
 ````
 
+#### destruct taktika
 
-destruct taktika
-
-A destruct taktika segítségével a diszjunkciót két esetre bontjuk, és mindkét esetet külön bizonyítjuk.
+A destruct taktika segítségével a diszjunkciót két esetre bontjuk, és mindkét esetben külön bizonyítunk.
 Példa:
 
-coq
-
+````coq
 Lemma or_comm : forall A B : Prop, A \/ B -> B \/ A.
 Proof.
   intros.
@@ -345,46 +343,47 @@ Proof.
   - (* Második eset: B igaz *)
     left. exact HB.
 Qed.
+````
 
 A destruct előtt:
 
-coq
-
+````coq
 1 goal
 A, B : Prop
 H : A \/ B
 ______________________________________(1/1)
 B \/ A
+````
 
-A destruct H as [HA | HB] után két al-esetet kapunk:
+A destruct H as [HA | HB] után két alcélt kapunk:
 
 Első eset:
 
-coq
-
+````coq
 1/2 goals
 A, B : Prop
 HA : A
 ______________________________________(1/1)
 B \/ A
+````
 
 Második eset:
 
-coq
-
+````coq
 2/2 goals
 A, B : Prop
 HB : B
 ______________________________________(2/2)
 B \/ A
+````
 
 Mindkét esetben a megfelelő taktikával (itt right és left) igazoljuk a célállítást.
-Kézi megoldás: elim taktika
+
+### Kézi megoldás: elim taktika
 
 Az elim taktika is használható a diszjunkció kiküszöbölésére, bár a destruct általában intuitívabb.
 
-coq
-
+````coq
 Lemma or_comm_elim : forall A B : Prop, A \/ B -> B \/ A.
 Proof.
   intros.
@@ -396,61 +395,27 @@ Proof.
     intro HB.
     left. exact HB.
 Qed.
-
-case taktika
-
-A case taktika szintén használható a diszjunkció szétbontására.
-
-coq
-
-Lemma or_comm_case : forall A B : Prop, A \/ B -> B \/ A.
-Proof.
-  intros.
-  case H.
-  - (* Első eset: A igaz *)
-    intro HA.
-    right. exact HA.
-  - (* Második eset: B igaz *)
-    intro HB.
-    left. exact HB.
-Qed.
+````
 
 Destruktorok
 
 A diszjunkció destruktorai az egyes ágak kezelését teszik lehetővé. Bár a or típus esetében nincs explicit destruktor, a mintaillesztés (match kifejezés) segítségével elérhetjük az egyes ágakat.
-Példa: Mintaillesztés
 
-coq
+#### Példa: Mintaillesztés
 
+````coq
 Definition or_swap (A B : Prop) (H : A \/ B) : B \/ A :=
   match H with
   | or_introl HA => or_intror HA
   | or_intror HB => or_introl HB
   end.
+````
 
 Itt a match kifejezéssel vizsgáljuk meg, hogy H melyik konstruktorral jött létre (or_introl vagy or_intror), és ennek megfelelően alakítjuk át az állítást.
-Bizonyítás taktikai lépésekkel
 
-coq
+#### Összetett példa
 
-Lemma or_swap_lemma : forall A B : Prop, A \/ B -> B \/ A.
-Proof.
-  intros A B H.
-  destruct H as [HA | HB].
-  - (* Első eset: H = or_introl HA *)
-    right. exact HA.
-  - (* Második eset: H = or_intror HB *)
-    left. exact HB.
-Qed.
-
-Összetett példa
-
-Bizonyítsuk be a diszjunkció asszociativitását:
-
-Tétel:
-
-coq
-
+````coq
 Lemma or_assoc : forall A B C : Prop, A \/ (B \/ C) -> (A \/ B) \/ C.
 Proof.
   intros A B C H.
@@ -464,25 +429,10 @@ Proof.
     + (* Al-eset: C *)
       right. exact HC.
 Qed.
+````
 
-Magyarázat:
+### Megjegyzés az elim, induction és inversion taktikákról
 
-    Először a destruct H segítségével két esetre bontjuk H-t: A vagy B \/ C.
-    Az első esetben A igaz, így (A \/ B) \/ C bal oldalán A \/ B van, amelyben A igaz, ezért left. left. exact HA..
-    A második esetben B \/ C-t kell tovább bontanunk destruct HBC-vel.
-        Ha HB : B, akkor (A \/ B) \/ C bal oldalán A \/ B van, amelyben B igaz, ezért left. right. exact HB..
-        Ha HC : C, akkor (A \/ B) \/ C jobb oldalán C van, ezért right. exact HC..
+Az elim és az induction taktikák a diszjunkció esetében hasonlóan működnek, mint a destruct, de általában az elim-et használjuk a logikai típusok esetében.
 
-Megjegyzés az elim, induction és inversion taktikákról
-
-    Az elim és az induction taktikák a diszjunkció esetében hasonlóan működnek, mint a destruct, de általában az elim-et használjuk a logikai típusok esetében.
-    Az inversion taktika a diszjunkcióra is alkalmazható, de gyakran túl erős eszköz ehhez a feladathoz. Az inversion részletesen kielemezi a bizonyíték szerkezetét, ami a diszjunkciónál nem szükséges, mert a destruct elegendő.
-
-Összefoglalás
-
-    A diszjunkció (\/) bevezetési szabályai két konstruktort adnak: or_introl és or_intror.
-    A bevezetési taktikák: left (bal oldal bizonyítása) és right (jobb oldal bizonyítása).
-    A kiküszöbölési szabályt a destruct taktikával alkalmazzuk, amely szétbontja a diszjunkciót két esetre.
-    A match kifejezés és a mintaillesztés segítségével közvetlenül is dolgozhatunk a diszjunkcióval.
-    A destruct taktika a leggyakrabban használt eszköz a diszjunkció kezelésére.
-
+Az inversion taktika a diszjunkcióra is alkalmazható, de gyakran túl erős eszköz ehhez a feladathoz. Az inversion részletesen kielemezi a bizonyíték szerkezetét, ami a diszjunkciónál nem szükséges feltétlenül.

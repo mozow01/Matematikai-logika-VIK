@@ -39,6 +39,9 @@ Definition beta_red_cbn_opt (t : Term) : option Term :=
 Eval compute in beta_red_cbn_opt 
   (if_then_else ff (if_then_else (if_then_else ff ff tt) ff tt) ff ).
 
+Eval compute in beta_red_cbn_opt 
+  (if_then_else (if_then_else (if_then_else ff ff tt) ff tt) ff ff ).
+
 (*
 ***************************
 Többértékűség - Lista monád

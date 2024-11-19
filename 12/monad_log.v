@@ -9,7 +9,7 @@ Inductive Term : Set :=
   | ff : Term
   | if_then_else : Term -> Term -> Term -> Term.
 
-(*CBV Beta Reduction for run a program (cbn: call-by-name reduction strategy)*)
+(* (cbn: call-by-name reduction strategy) volt az első órán *)
 Fixpoint beta_red_cbn (t : Term) : Term :=
  match t with 
    | if_then_else p q r => 

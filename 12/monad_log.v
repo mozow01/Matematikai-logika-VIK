@@ -132,7 +132,12 @@ Definition beta_reduct_full_with_trace_c (t : Term) : list Term :=
 
 
 Compute beta_reduct_full_with_trace_c example_term.
-
+   
+(*
+****************
+  Már 13. hét
+****************
+*)
 (*Monad in CS, Extension system*)
 Structure Monad : Type := mk_monad
 {

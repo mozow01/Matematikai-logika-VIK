@@ -28,7 +28,9 @@ Kivételek - Option/Maybe monád
 ******************************
 *)
 
-(*Példa: a beta_red_cbn redukciós stratégia nem garantál teljes redukciót (nem fut le a program feltétlenül), de ha lefut, gyorsan fut le, mert csak a közvetlen tt ff eseteket értékeli ki. Tehát nincs mindenhol értelmezve. Az ilyen nem mindenhol értelmezett függvények (kivételek) kezelésére való az option typeformer.*)
+(*Példa: a beta_red_cbn redukciós stratégia nem garantál teljes redukciót (nem fut le a program feltétlenül), 
+  de ha lefut, gyorsan fut le, mert csak a közvetlen tt ff eseteket értékeli ki. Tehát nincs mindenhol értelmezve. 
+  Az ilyen nem mindenhol értelmezett függvények (kivételek) kezelésére való az option typeformer. Az option typeformer induktív definíciójához: Print option.*)
 
 Definition beta_red_cbn_opt (t : Term) : option Term := 
   match (beta_red_cbn t) with
@@ -48,7 +50,7 @@ Többértékűség - Lista monád
 ***************************
 *)
 
-(*Van, amikor nem kivételek, hanem többértékűség van. Pl. amikor nem egyetlen adat, hanem egy egész számítástörténet a kimenet.*)
+  (*Van, amikor nem kivételek, hanem többértékűség van. Pl. amikor nem egyetlen adat, hanem egy egész számítástörténet a kimenet. A lista typeformer induktív definíciójához: Print list.*)
 
 Fixpoint depth (t : Term) : nat :=
   match t with
@@ -76,6 +78,8 @@ Compute beta_reduct_full_with_trace example_term.
 ************************************************************
 Korai kilépés - call/cc (call by current continuation) monad
 ************************************************************
+
+Az előző példában túl sok redukció történt, lehetne gyorsabban, ha elérünk a legmélyére korábban.   
 *)
 
 Fixpoint beta_reduct_with_trace_and_exit (steps : nat) (t : Term) : list Term :=
@@ -92,6 +96,11 @@ Definition beta_reduct_full_with_trace_and_exit (t : Term) : list Term :=
   beta_reduct_with_trace_and_exit (depth t) t. 
 
 Compute beta_reduct_full_with_trace_and_exit example_term.
+
+(*
+Az alábbi nagyon absztrakt megoldás egy "exit" lable-t tesz a kilépés helyére. Ehhez egy olyan függvényre van szükség, amelyik 
+  az exit változó meghívásakor kiugrik a számításból, ha meg nincs meghívva exit, folytatja. 
+*)
 
 Definition call_cc {A : Type} (f : (A -> A) -> A) : A :=
   f (fun x => x).
@@ -117,6 +126,13 @@ Compute beta_reduct_full_with_trace_and_call_cc example_term.
 *********************************************
 Continuation passing style (cps) - continuation monád
 *********************************************
+*)
+
+(*
+Az előbbi megoldás lényegében olyan alakban ír fel egy függvényt hogy azt nézi, mit lehet vele csinálni. Ez egy általános programozási stílus
+  az úgy nevezett kontinuáció. Ahelyett, hogy leprogramoznánk az f: A -> B függvényt, azt mondjuk meg, hogy ha őt egy g: (A -> B) -> C meghívná
+  abból a célból, hogy egy C-beli értéket számítson ki, hogyan kell ezt megtenni. Tehát szükségünk van egy f_cont :  ((A -> B) -> C) -> C alakra, 
+  amelyik megmondja, hogy ha egy g "tovább akarnak számolni f-fel", akkor azt hogy kell tennie. Ilyenkor g a kontinuáció, f_cont a sontinuation passing style alakja f-nek.
 *)
 
 Fixpoint depth_cps (t : Term) (k : nat -> list Term) : list Term :=

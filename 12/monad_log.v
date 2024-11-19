@@ -132,7 +132,7 @@ Continuation passing style (cps) - continuation monád
 Az előbbi megoldás lényegében olyan alakban ír fel egy függvényt hogy azt nézi, mit lehet vele csinálni. Ez egy általános programozási stílus
   az úgy nevezett kontinuáció. Ahelyett, hogy leprogramoznánk az f: A -> B függvényt, azt mondjuk meg, hogy ha őt egy g: (A -> B) -> C meghívná
   abból a célból, hogy egy C-beli értéket számítson ki, hogyan kell ezt megtenni. Tehát szükségünk van egy f_cont :  ((A -> B) -> C) -> C alakra, 
-  amelyik megmondja, hogy ha egy g "tovább akarnak számolni f-fel", akkor azt hogy kell tennie. Ilyenkor g a kontinuáció, f_cont a sontinuation passing style alakja f-nek.
+  amelyik megmondja, hogy ha egy g "tovább akarnak számolni f-fel", akkor azt hogy kell tennie. Ilyenkor g a kontinuáció, f_cont a continuation passing style alakja f-nek.
 *)
 
 Fixpoint depth_cps (t : Term) (k : nat -> list Term) : list Term :=

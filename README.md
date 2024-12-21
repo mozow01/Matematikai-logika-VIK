@@ -12,7 +12,7 @@ Alkalmazott (lineáris algebra és matematikai logika) -> (Alkalmazott lineáris
 5. Bizonyíthatóság (és, vagy, ha akkor)
 6. Bizonyíthatóság (negáció)
 7. Bizonyíthatóság (kvantorok)
-8. Monadikus kvantorok
+8. Monadikus kvantorok, explicit helyettesítés
 9. Prenex formulák
 10. Kategorikus szemantika
 11. Monádok

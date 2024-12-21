@@ -52,7 +52,7 @@ Lesz szó
 * szemantikáról (amit jelent, operacionális, denotációs, algebrai) és
 * pragmatikáról (ahogy használjuk, ahogy a programok futnak).
 
-Van egy nagyon erős kapcsolat a programozás (funkcionális, típusos), a logika (konstruktív) és az algebra (kategóriaelmélet) között, ez a Curry--Howard--Lambek-izomorfizmus.
+Van egy nagyon erős kapcsolat a programozás (funkcionális, típusos), a logika (konstruktív) és az algebra (kategóriaelmélet) között, ez a Curry--Howard--Lambek-izomorfizmus. Ez az absztraktsági szint a programnyelvek nagy részében elég, mert ha típusosak, akkor is polimorfak, ami elfér ebben a keretelméletben. A folytatás a függő típuselmélet (Martin-Löf típuselmélet), amely számunkra a natív nyelv, keretelmélet, metaelmélet.
 
 Nagy segítségünkre lesz egy teljes, tiszta, típusos, funkcionális programozási nyelv, a [Coq](https://coq.inria.fr/) (vagy nagynéha a [Lean4](https://leanprover.github.io/theorem_proving_in_lean4/) ) ez egyben bizonyítás asszisztens, általános célú programnyelv és programnyelv tervező szoftver.  
 

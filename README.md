@@ -54,7 +54,7 @@ Lesz szó
 
 Van egy nagyon erős kapcsolat a programozás (funkcionális, típusos), a logika (konstruktív) és az algebra (kategóriaelmélet) között, ez a Curry--Howard--Lambek-izomorfizmus.
 
-Nagy segítségünkre lesz két teljes, tiszta, típusos, funkcionális programozási nyelv, a [Coq](https://coq.inria.fr/) és a [Lean4](https://leanprover.github.io/theorem_proving_in_lean4/), amelyek egyben bizonyítás asszisztensek, általános célú programnyelvek és programnyelv tervező szoftverek.  
+Nagy segítségünkre lesz egy teljes, tiszta, típusos, funkcionális programozási nyelv, a [Coq](https://coq.inria.fr/) (vagy nagynéha a [Lean4](https://leanprover.github.io/theorem_proving_in_lean4/) ) ez egyben bizonyítás asszisztens, általános célú programnyelv és programnyelv tervező szoftver.  
 
 Coq:
 
@@ -64,12 +64,12 @@ Coq:
 * C helyességbizonyító, 4 szín sejtés, Gödel-tétel bizonyítása.
 * IDE is van hozzá (CoqIDE).
 
-Lean4:
+(Lean4:
 
 * **Leon**ardo de Moura, Microsoft Research, 2013-
 * matematikai könyvtára (Mathlib4) a teljes matematikus BSc anyagot tartalmazza
 * Polinomiális Freiman-Ruzsa sejtés (számtud), NF ellentmondásmentessége (logika)
-* VSCode
+* VSCode)
 
 
 

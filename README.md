@@ -21,17 +21,15 @@ Alkalmazott (lineáris algebra és matematikai logika) -> (Alkalmazott lineáris
 
 ## Követelmény
 
-### Kötelező tárgyként: 
+Matamatikai logika rész követelményei:
 
 * 10 beadandó Moodle feladat: 20 pont, nincs minimumkövetelmény, de beleszámít a pontszerzésbe.
 * 1 zh (45 perc): 20 pont, minimumkövetelmény: 8 pont. 
 * vizsga (45 perc): 10 pont, minimumkövetelmény: 4 pont.
 
+A tárgy teljes követelményrendszere: [https://github.com/mozow01/Matematikai-logika-VIK/blob/main/2025_BMETE90MX75.pdf]
+
 A jegy a Lineráis algebra részből szerzett pontokból is összeáll.
-
-### Szabadon válaszható tárgyként: 
-
-* 10 beadandó Moodle feladat: 20 pont, minimumkövetelmény: 8 pont.
 
 ## Miről szól a tárgy?
 

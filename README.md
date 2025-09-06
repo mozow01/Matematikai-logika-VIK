@@ -69,7 +69,18 @@ Coq:
 * Polinomiális Freiman-Ruzsa sejtés (számtud), NF ellentmondásmentessége (logika)
 * VSCode)
 
+## Szoftverek és segédletek:
 
+Coq 8.18 / Rocq 9.0 https://rocq-prover.org/ 
 
+CoqIDE alap integrated development environment Coq-ra; VsCode-ban VsCoq csomag: ajánlgatják Coq 8.18-ra és Rocq 9.0-ra.
 
+Coq gyakorlókönyvek:
 
+https://www.labri.fr/perso/casteran/CoqArt/
+
+http://adam.chlipala.net/cpdt/
+
+https://www.lri.fr/~paulin/LASER/course-notes.pdf
+
+https://softwarefoundations.cis.upenn.edu/lf-current/index.html

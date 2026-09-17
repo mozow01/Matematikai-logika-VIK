@@ -14,19 +14,16 @@ ezeket az első órai fájl aljára írd. Az új ``prg``-anyag szerkeszthető
 alapfájlja már a
 `2/prg.v <https://github.com/mozow01/Matematikai-logika-VIK/blob/main/2/prg.v>`_.
 
-Bemelegítés: az ITE 4×2 feladatbank
+Bemelegítés: az ITE 2×2 gyakorló
 -----------------------------------
 
-A gyakorló ugyanazt a négyféle gondolkodásmódot kéri számon, mint az első
-Moodle-feladatsor, de csak a két-két fajsúlyosabb változatot tartja meg.
-Mind a négy kategóriából egy feladat kerül az aktuális sorba, ezért összesen
-:math:`2^4=16` különböző összeállítás sorsolható. A sorrend szándékos:
+A gyakorló az első Moodle-feladatsor két most látható kategóriájából tartja
+meg a két-két fajsúlyosabb változatot. Mindkét kategóriából egy feladat kerül
+az aktuális sorba, ezért összesen :math:`2^2=4` különböző összeállítás
+sorsolható. A sorrend szándékos:
 
 1. először kiértékelési útvonalakat követünk;
-2. utána logikai műveletek jelentését igazoljuk;
-3. denotációs azonosságokat bizonyítunk;
-4. végül egyszerre beszélünk szintaktikai különbözőségről és azonos
-   jelentésről.
+2. utána logikai műveletek jelentését igazoljuk.
 
 Kattintgatós gyakorló
 ~~~~~~~~~~~~~~~~~~~~~
@@ -43,8 +40,8 @@ feladatsort. A felület helyben, automatikusan ellenőrzi a válaszokat. A
      <noscript>A kattintgatós gyakorlóhoz engedélyezni kell a JavaScriptet.</noscript>
    </div>
 
-A nyolc feladat jsCoq-ablakai
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+A négy látható feladat jsCoq-ablakai
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Az ablakban léptess a ``Proof.`` sorig. Ott nyitott bizonyítási cél vár:
 írd a komment helyére a taktikáidat, végül zárd a bizonyítást ``Qed.``-del.
@@ -83,7 +80,7 @@ bevezetni, majd a ``simpl`` után ezekkel átírni a célt.
 
    <iframe class="rocq-frame rocq-frame--example"
      src="../_static/rocq/ite-playground.html?example=practice_beta_2"
-     title="ITE 4x2: háromszintű béta-redukció, Tru Fal Fal"
+     title="ITE 2x2: háromszintű béta-redukció, Tru Fal Fal"
      loading="lazy" allow="clipboard-write"></iframe>
 
 1/B – ``Fal / Fal / Tru``
@@ -102,7 +99,7 @@ bevezetni, majd a ``simpl`` után ezekkel átírni a célt.
 
    <iframe class="rocq-frame rocq-frame--example"
      src="../_static/rocq/ite-playground.html?example=practice_beta_4"
-     title="ITE 4x2: háromszintű béta-redukció, Fal Fal Tru"
+     title="ITE 2x2: háromszintű béta-redukció, Fal Fal Tru"
      loading="lazy" allow="clipboard-write"></iframe>
 
 2. csoport: származtatott műveletek denotációja
@@ -125,7 +122,7 @@ két szintaxisfa egyenlőségét, hanem a denotációk egyenlőségét bizonyít
 
    <iframe class="rocq-frame rocq-frame--example"
      src="../_static/rocq/ite-playground.html?example=practice_connective_3"
-     title="ITE 4x2: kizáró vagy denotációja"
+     title="ITE 2x2: kizáró vagy denotációja"
      loading="lazy" allow="clipboard-write"></iframe>
 
 2/B – Ekvivalencia
@@ -142,92 +139,95 @@ két szintaxisfa egyenlőségét, hanem a denotációk egyenlőségét bizonyít
 
    <iframe class="rocq-frame rocq-frame--example"
      src="../_static/rocq/ite-playground.html?example=practice_connective_4"
-     title="ITE 4x2: ekvivalencia denotációja"
+     title="ITE 2x2: ekvivalencia denotációja"
      loading="lazy" allow="clipboard-write"></iframe>
 
-3. csoport: denotációs azonosságok
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+..
+   A 3. és 4. feladatcsoport szándékosan rejtve marad a forrásban.
 
-Ezek a tételek általános ``Boole``-kifejezésekről szólnak. A változókat nem
-lehet közvetlenül ``Tru`` és ``Fal`` esetekre bontani, mert az ``Ite`` is
-``Boole`` konstruktor. A ``denote A : bool`` értéke viszont valóban kétféle;
-ezért többnyire azon érdemes esetbontást végezni.
+   3. csoport: denotációs azonosságok
+   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-3/A – A konjunkció asszociativitása
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   Ezek a tételek általános ``Boole``-kifejezésekről szólnak. A változókat nem
+   lehet közvetlenül ``Tru`` és ``Fal`` esetekre bontani, mert az ``Ite`` is
+   ``Boole`` konstruktor. A ``denote A : bool`` értéke viszont valóban kétféle;
+   ezért többnyire azon érdemes esetbontást végezni.
 
-.. code-block:: coq
+   3/A – A konjunkció asszociativitása
+   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-   Theorem and2_assoc_denote :
-     forall A B C,
-       denote (And2 (And2 A B) C) =
-       denote (And2 A (And2 B C)).
+   .. code-block:: coq
 
-.. raw:: html
+      Theorem and2_assoc_denote :
+        forall A B C,
+          denote (And2 (And2 A B) C) =
+          denote (And2 A (And2 B C)).
 
-   <iframe class="rocq-frame rocq-frame--example"
-     src="../_static/rocq/ite-playground.html?example=practice_denotation_3"
-     title="ITE 4x2: a konjunkció denotációs asszociativitása"
-     loading="lazy" allow="clipboard-write"></iframe>
+   .. raw:: html
 
-3/B – De Morgan-azonosság
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+      <iframe class="rocq-frame rocq-frame--example"
+        src="../_static/rocq/ite-playground.html?example=practice_denotation_3"
+        title="ITE 4x2: a konjunkció denotációs asszociativitása"
+        loading="lazy" allow="clipboard-write"></iframe>
 
-.. code-block:: coq
+   3/B – De Morgan-azonosság
+   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-   Theorem de_morgan_denote :
-     forall A B,
-       denote (Neg (And2 A B)) =
-       denote (Ite (Neg A) Tru (Neg B)).
+   .. code-block:: coq
 
-.. raw:: html
+      Theorem de_morgan_denote :
+        forall A B,
+          denote (Neg (And2 A B)) =
+          denote (Ite (Neg A) Tru (Neg B)).
 
-   <iframe class="rocq-frame rocq-frame--example"
-     src="../_static/rocq/ite-playground.html?example=practice_denotation_4"
-     title="ITE 4x2: De Morgan-azonosság denotációval"
-     loading="lazy" allow="clipboard-write"></iframe>
+   .. raw:: html
 
-4. csoport: szintaxis és szemantika
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+      <iframe class="rocq-frame rocq-frame--example"
+        src="../_static/rocq/ite-playground.html?example=practice_denotation_4"
+        title="ITE 4x2: De Morgan-azonosság denotációval"
+        loading="lazy" allow="clipboard-write"></iframe>
 
-Minden állítás egy konjunkció. Az első fele azt mondja ki, hogy két
-kifejezés **nem ugyanaz a szintaxisfa**; ezt a konstruktorok különbözősége
-adja. A második fele azt mondja ki, hogy a két kifejezésnek mégis **azonos a
-denotációja**. A ``split`` után ezért a két részcél egészen más módszert kér.
+   4. csoport: szintaxis és szemantika
+   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-4/A – Beágyazott állandó igaz
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   Minden állítás egy konjunkció. Az első fele azt mondja ki, hogy két
+   kifejezés **nem ugyanaz a szintaxisfa**; ezt a konstruktorok különbözősége
+   adja. A második fele azt mondja ki, hogy a két kifejezésnek mégis **azonos a
+   denotációja**. A ``split`` után ezért a két részcél egészen más módszert kér.
 
-.. code-block:: coq
+   4/A – Beágyazott állandó igaz
+   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-   Theorem nested_true_branches :
-     forall A B,
-       Ite A (Ite B Tru Tru) Tru <> Tru /\
-       denote (Ite A (Ite B Tru Tru) Tru) = denote Tru.
+   .. code-block:: coq
 
-.. raw:: html
+      Theorem nested_true_branches :
+        forall A B,
+          Ite A (Ite B Tru Tru) Tru <> Tru /\
+          denote (Ite A (Ite B Tru Tru) Tru) = denote Tru.
 
-   <iframe class="rocq-frame rocq-frame--example"
-     src="../_static/rocq/ite-playground.html?example=practice_syntax_2"
-     title="ITE 4x2: beágyazott állandó igaz"
-     loading="lazy" allow="clipboard-write"></iframe>
+   .. raw:: html
 
-4/B – Beágyazott konjunkció, állandó hamis
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+      <iframe class="rocq-frame rocq-frame--example"
+        src="../_static/rocq/ite-playground.html?example=practice_syntax_2"
+        title="ITE 4x2: beágyazott állandó igaz"
+        loading="lazy" allow="clipboard-write"></iframe>
 
-.. code-block:: coq
+   4/B – Beágyazott konjunkció, állandó hamis
+   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-   Theorem nested_and_false :
-     forall A B,
-       And2 A (And2 B Fal) <> Fal /\
-       denote (And2 A (And2 B Fal)) = denote Fal.
+   .. code-block:: coq
 
-.. raw:: html
+      Theorem nested_and_false :
+        forall A B,
+          And2 A (And2 B Fal) <> Fal /\
+          denote (And2 A (And2 B Fal)) = denote Fal.
 
-   <iframe class="rocq-frame rocq-frame--example"
-     src="../_static/rocq/ite-playground.html?example=practice_syntax_4"
-     title="ITE 4x2: beágyazott konjunkció, állandó hamis"
-     loading="lazy" allow="clipboard-write"></iframe>
+   .. raw:: html
+
+      <iframe class="rocq-frame rocq-frame--example"
+        src="../_static/rocq/ite-playground.html?example=practice_syntax_4"
+        title="ITE 4x2: beágyazott konjunkció, állandó hamis"
+        loading="lazy" allow="clipboard-write"></iframe>
 
 Új anyag: belépés Boole falvaiba
 --------------------------------

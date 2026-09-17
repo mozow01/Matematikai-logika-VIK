@@ -224,6 +224,11 @@
         },
       ],
     },
+  ];
+
+  // A 3. és 4. feladatcsoport szándékosan rejtve marad a forrásban.
+  // Visszakapcsoláskor a két objektumot tedd vissza a categories tömbbe.
+  const hiddenCategories = [
     {
       id: 'denotation',
       title: 'Denotációs azonosságok',
@@ -441,6 +446,8 @@
     },
   ];
 
+  void hiddenCategories;
+
   let mountCounter = 0;
 
   function randomIndex(length) {
@@ -545,20 +552,20 @@
 
     const header = document.createElement('header');
     header.className = 'lesson2-practice__header';
-    const heading = addText(header, 'h4', '4 × 2 bemelegítő feladatsor');
+    const heading = addText(header, 'h4', '2 × 2 bemelegítő feladatsor');
     heading.id = `lesson2-practice-title-${mountId}`;
     mount.setAttribute('aria-labelledby', heading.id);
     addText(
       header,
       'p',
-      'Mind a négy csoportból válassz egy A vagy B változatot, ahogy a Moodle véletlen kérdéseinél. Itt azonnali, helyi visszajelzést kapsz; a válaszaid nem hagyják el a böngészőt.',
+      'Mindkét látható csoportból válassz egy A vagy B változatot, ahogy a Moodle véletlen kérdéseinél. Itt azonnali, helyi visszajelzést kapsz; a válaszaid nem hagyják el a böngészőt.',
     );
 
     const toolbar = document.createElement('div');
     toolbar.className = 'lesson2-practice__toolbar';
     const randomButton = addText(toolbar, 'button', 'Véletlen feladatsor', 'lesson2-practice__button');
     randomButton.type = 'button';
-    const checkAllButton = addText(toolbar, 'button', 'Mind a négy ellenőrzése', 'lesson2-practice__button lesson2-practice__button--secondary');
+    const checkAllButton = addText(toolbar, 'button', 'Mindkettő ellenőrzése', 'lesson2-practice__button lesson2-practice__button--secondary');
     checkAllButton.type = 'button';
     const resetAllButton = addText(toolbar, 'button', 'Válaszok törlése', 'lesson2-practice__button lesson2-practice__button--quiet');
     resetAllButton.type = 'button';
@@ -757,7 +764,7 @@
         renderCard(category, cards.get(category.id));
       });
       clearFeedback(overallFeedback);
-      setFeedback(overallFeedback, 'info', 'Új feladatsor készült: mind a négy csoportból választottunk egy változatot.');
+      setFeedback(overallFeedback, 'info', 'Új feladatsor készült: mindkét látható csoportból választottunk egy változatot.');
     }
 
     function clearAll() {
@@ -771,7 +778,7 @@
       const results = categories.map(category => cards.get(category.id).lesson2Check(false));
       const correct = results.filter(Boolean).length;
       if (correct === categories.length) {
-        setFeedback(overallFeedback, 'success', 'A teljes 4 × 2 feladatsor kiválasztott változatai helyesek.');
+        setFeedback(overallFeedback, 'success', 'A teljes 2 × 2 feladatsor kiválasztott változatai helyesek.');
       } else {
         setFeedback(
           overallFeedback,

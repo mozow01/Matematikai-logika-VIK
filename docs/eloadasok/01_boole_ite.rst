@@ -247,7 +247,7 @@ A szintaxisfa önmagában csak szerkezet. Jelentést pl. úgy adunk neki, hogy m
 
 .. math::
 
-   \llbracket\_\rrbracket : \mathsf{Boole}\longrightarrow\mathsf{bool}.
+   [[\_]] : \mathsf{Boole}\longrightarrow\mathsf{bool}.
 
 A fájlban ezt a függvényt ``denote``-nak hívjuk:
 

@@ -1,0 +1,263 @@
+:root {
+  --logic-accent: #00695c;
+  --logic-accent-dark: #004d40;
+  --logic-accent-soft: #e0f2f1;
+  --logic-ink: #1f2933;
+  --logic-muted: #52606d;
+  --logic-border: #cbd5e1;
+  --logic-success: #166534;
+  --logic-success-bg: #ecfdf3;
+  --logic-error: #9f1239;
+  --logic-error-bg: #fff1f2;
+}
+
+.wy-side-nav-search,
+.wy-nav-top {
+  background: var(--logic-accent-dark);
+}
+
+.wy-nav-content {
+  max-width: none;
+  min-height: 100vh;
+  padding-left: 3.5rem;
+  padding-right: 3.5rem;
+}
+
+.rst-content {
+  max-width: 1120px;
+  margin: 0 auto;
+  color: var(--logic-ink);
+}
+
+.rst-content a,
+.rst-content a:visited {
+  color: var(--logic-accent);
+}
+
+.rst-content .math {
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+.rst-content code.literal {
+  color: #7c2d12;
+}
+
+.concept-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+  margin: 1.25rem 0 1.75rem;
+}
+
+.concept-card {
+  padding: 1rem 1.1rem;
+  border: 1px solid var(--logic-border);
+  border-top: 4px solid var(--logic-accent);
+  border-radius: 6px;
+  background: #fff;
+}
+
+.concept-card h3 {
+  margin-top: 0;
+  font-size: 1.05rem;
+}
+
+.concept-card p:last-child {
+  margin-bottom: 0;
+}
+
+.rocq-frame {
+  width: 100%;
+  min-height: 680px;
+  border: 1px solid var(--logic-border);
+  border-radius: 6px;
+  background: #fff;
+}
+
+.rocq-frame--example {
+  display: block;
+  height: 160px;
+  min-height: 160px;
+  margin: 0.8rem 0 2rem;
+  transition: height 180ms ease;
+}
+
+.practice-shell {
+  margin: 1.5rem 0 2rem;
+  padding: 1.25rem;
+  border: 1px solid #94a3b8;
+  border-radius: 8px;
+  background: #f8fafc;
+}
+
+.practice-intro {
+  margin-top: 0;
+  color: var(--logic-muted);
+}
+
+.practice-card {
+  margin: 1rem 0;
+  padding: 1.15rem;
+  border: 1px solid var(--logic-border);
+  border-radius: 7px;
+  background: #fff;
+}
+
+.practice-card h3 {
+  margin-top: 0;
+}
+
+.practice-expression,
+.practice-option code {
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+}
+
+.practice-expression {
+  display: block;
+  margin: 0.75rem 0 1rem;
+  padding: 0.85rem 1rem;
+  border-left: 4px solid var(--logic-accent);
+  background: #f1f5f9;
+  color: #172554;
+  font-family: SFMono-Regular, Consolas, "Liberation Mono", monospace;
+  line-height: 1.55;
+}
+
+.practice-field {
+  display: grid;
+  grid-template-columns: minmax(15rem, 1fr) minmax(9rem, 15rem);
+  gap: 0.8rem;
+  align-items: center;
+  margin: 0.75rem 0;
+}
+
+.practice-field select {
+  width: 100%;
+  padding: 0.45rem;
+  border: 1px solid #94a3b8;
+  border-radius: 4px;
+  background: #fff;
+}
+
+.practice-options {
+  display: grid;
+  gap: 0.65rem;
+  margin-top: 1rem;
+}
+
+.practice-option {
+  display: flex;
+  gap: 0.65rem;
+  align-items: flex-start;
+  padding: 0.75rem;
+  border: 1px solid var(--logic-border);
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.practice-option:hover {
+  border-color: var(--logic-accent);
+  background: #f8fffe;
+}
+
+.practice-option input {
+  margin-top: 0.2rem;
+}
+
+.truth-table {
+  width: auto !important;
+  min-width: 18rem;
+  margin: 0.75rem 0 1rem !important;
+}
+
+.truth-table th,
+.truth-table td {
+  text-align: center;
+}
+
+.practice-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.7rem;
+  margin: 1.1rem 0 0.25rem;
+}
+
+.practice-button {
+  border: 0;
+  border-radius: 5px;
+  padding: 0.65rem 1rem;
+  color: #fff;
+  background: var(--logic-accent-dark);
+  font: 600 0.95rem/1.2 system-ui, sans-serif;
+  cursor: pointer;
+}
+
+.practice-button:hover {
+  background: var(--logic-accent);
+}
+
+.practice-button--secondary {
+  border: 1px solid var(--logic-accent-dark);
+  color: var(--logic-accent-dark);
+  background: #fff;
+}
+
+.practice-feedback {
+  min-height: 1.5rem;
+  margin: 1rem 0 0;
+  padding: 0.85rem 1rem;
+  border-radius: 5px;
+}
+
+.practice-feedback:empty {
+  display: none;
+}
+
+.practice-feedback.is-success {
+  border: 1px solid #86efac;
+  color: var(--logic-success);
+  background: var(--logic-success-bg);
+}
+
+.practice-feedback.is-error {
+  border: 1px solid #fda4af;
+  color: var(--logic-error);
+  background: var(--logic-error-bg);
+}
+
+.practice-help {
+  margin-top: 1rem;
+}
+
+.practice-help summary {
+  color: var(--logic-accent-dark);
+  font-weight: 600;
+  cursor: pointer;
+}
+
+@media (max-width: 760px) {
+  .wy-nav-content {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .concept-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .practice-field {
+    grid-template-columns: 1fr;
+    gap: 0.3rem;
+  }
+
+  .rocq-frame {
+    min-height: 900px;
+  }
+
+  .rocq-frame--example {
+    height: 175px;
+    min-height: 175px;
+  }
+}

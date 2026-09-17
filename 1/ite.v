@@ -33,13 +33,21 @@ Theorem And_denote :
   forall A B,
     denote (And2 A B) = andb (denote A) (denote B).
 Proof.
-Admitted.
+  intros A B.
+  unfold And2.
+  simpl.
+  destruct (denote A); reflexivity.
+Qed.
 
 Theorem And_denote_2 :
   forall A B,
     denote (And2 A B) = denote (And A B).
 Proof.
-Admitted.
+  intros A B.
+  unfold And2, And.
+  simpl.
+  destruct (denote A), (denote B); reflexivity.
+Qed.
 
 (* ====================================================== *)
 (*               Operacionális szemantika                 *)
@@ -160,4 +168,3 @@ Proof.
       rewrite IHA1.
       reflexivity.
 Qed.
-

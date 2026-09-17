@@ -1,0 +1,59 @@
+name: Jegyzet publikálása GitHub Pagesre
+
+on:
+  push:
+    branches: ["main"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: npm
+
+      - name: JavaScript-függőségek
+        run: npm ci
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Dokumentációs függőségek
+        run: pip install -r requirements.txt
+
+      - name: Sphinx-oldal elkészítése
+        run: npm run docs:html
+
+      - name: GitHub Pages beállítása
+        uses: actions/configure-pages@v5
+
+      - name: Elkészült oldal feltöltése
+        uses: actions/upload-pages-artifact@v5
+        with:
+          path: _build/html
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Publikálás
+        id: deployment
+        uses: actions/deploy-pages@v5

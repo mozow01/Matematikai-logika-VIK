@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="hu">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Boole és Ite – interaktív Coq-ablak</title>
+  <style>
+    html, body, #ide-wrapper { height: 100%; margin: 0; }
+    #document { padding: 0.75rem 1rem 2rem; }
+    #document h1 { font: 600 1.15rem/1.4 system-ui, sans-serif; }
+    #document p { font: 0.95rem/1.5 system-ui, sans-serif; }
+    [hidden] { display: none !important; }
+    #launcher {
+      box-sizing: border-box;
+      min-height: 158px;
+      display: grid;
+      place-items: center;
+      padding: 1rem;
+      color: #163c36;
+      background: linear-gradient(135deg, #f4fbfa, #dff3ef);
+      font-family: system-ui, sans-serif;
+      text-align: center;
+    }
+    #launcher strong { display: block; margin-bottom: 0.65rem; }
+    #launcher button {
+      border: 0;
+      border-radius: 5px;
+      padding: 0.65rem 1rem;
+      color: #fff;
+      background: #004d40;
+      font: 600 0.95rem/1.2 system-ui, sans-serif;
+      cursor: pointer;
+    }
+    #launcher button:hover { background: #00695c; }
+    #launcher button:disabled { cursor: wait; opacity: 0.7; }
+    #launcher-status { min-height: 1.25rem; margin: 0.5rem 0 0; font-size: 0.85rem; }
+  </style>
+</head>
+<body>
+  <div id="launcher">
+    <div>
+      <strong id="launcher-title">Interaktív Coq-példa</strong>
+      <button id="start-example" type="button">Interaktív ablak indítása</button>
+      <p id="launcher-status">A motor csak kattintás után töltődik be.</p>
+    </div>
+  </div>
+
+  <div id="ide-wrapper" class="toggled" hidden>
+    <div id="code-wrapper">
+      <div id="document">
+        <h1 id="example-heading">Boole és Ite</h1>
+        <p>
+          A jobb felső lefelé mutató nyíllal lépésenként futtathatod a kódot.
+          A példát szabadon módosíthatod.
+        </p>
+        <textarea id="coq-code">(* A példa betöltése… *)</textarea>
+      </div>
+    </div>
+  </div>
+
+  <script type="module">
+    const examples = {
+      syntax: {
+        title: 'A Boole-kifejezések szintaxisa',
+        file: 'syntax.v',
+      },
+      operations: {
+        title: 'Származtatott műveletek',
+        file: 'operations.v',
+      },
+      denotation: {
+        title: 'Denotációs szemantika',
+        file: 'denotation.v',
+      },
+      reduction: {
+        title: 'Kiértékelés beta_reduce-dzal',
+        file: 'reduction.v',
+      },
+      comparison: {
+        title: 'Szintaxis, eredmény és denotáció',
+        file: 'comparison.v',
+      },
+    };
+
+    const requested = new URLSearchParams(window.location.search).get('example');
+    const selected = examples[requested]
+      ? [examples[requested]]
+      : [examples.syntax];
+
+    const launcher = document.getElementById('launcher');
+    const startButton = document.getElementById('start-example');
+    const status = document.getElementById('launcher-status');
+    const ide = document.getElementById('ide-wrapper');
+    const title = selected.length === 1 ? selected[0].title : 'Az első előadás példái';
+    document.getElementById('launcher-title').textContent = title;
+    document.getElementById('example-heading').textContent = title;
+
+    async function loadStylesheet(href) {
+      await new Promise((resolve, reject) => {
+        const link = document.createElement('link');
+        link.rel = 'stylesheet';
+        link.href = href;
+        link.addEventListener('load', resolve, { once: true });
+        link.addEventListener('error', reject, { once: true });
+        document.head.appendChild(link);
+      });
+    }
+
+    async function startExample() {
+      startButton.disabled = true;
+      status.textContent = 'A példa és az ellenőrzőmotor betöltése…';
+
+      try {
+        const sources = await Promise.all(selected.map(async example => {
+          const response = await fetch(`./examples/eloadas_01/${example.file}`);
+          if (!response.ok) throw new Error(`Nem sikerült betölteni: ${example.file}`);
+          return response.text();
+        }));
+
+        document.getElementById('coq-code').value = sources.join('\n\n');
+        await loadStylesheet('../vendor/jscoq/dist/frontend/index.css');
+        const { JsCoq } = await import('../vendor/jscoq/jscoq.js');
+
+        document.body.classList.add('jscoq-main');
+        window.matlogCoq = await JsCoq.start(['coq-code'], {
+          prelude: true,
+          implicit_libs: true,
+          focus: false,
+          editor: { mode: { 'company-coq': true }, keyMap: 'default' },
+          init_pkgs: ['init'],
+          all_pkgs: ['coq'],
+        });
+        await window.matlogCoq.when_ready.promise;
+
+        launcher.hidden = true;
+        ide.hidden = false;
+        for (const snippet of window.matlogCoq.provider.snippets) {
+          snippet.editor.refresh();
+        }
+        window.parent.postMessage({
+          type: 'matlog-rocq-resize',
+          height: 680,
+        }, window.location.origin);
+      } catch (error) {
+        startButton.disabled = false;
+        status.textContent = `Hiba: ${error.message}`;
+      }
+    }
+
+    startButton.addEventListener('click', startExample);
+  </script>
+</body>
+</html>

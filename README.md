@@ -84,3 +84,31 @@ http://adam.chlipala.net/cpdt/
 https://www.lri.fr/~paulin/LASER/course-notes.pdf
 
 https://softwarefoundations.cis.upenn.edu/lf-current/index.html
+
+## Online előadásjegyzet
+
+Az interaktív GitHub Pages-jegyzet címe:
+<https://mozow01.github.io/Matematikai-logika-VIK/>
+
+Az oldal Sphinxszel készül. A Coq-példák böngészőben, jsCoq segítségével is
+futtathatók. Helyi ellenőrzés:
+
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+npm ci
+npm run proofs:check
+npm run practice:check
+npm run docs:html
+```
+
+A kész oldal az `_build/html/index.html` fájlban található. Az interaktív
+Coq-ablakokhoz HTTP-kiszolgálón keresztül kell megnyitni, például:
+
+```bash
+python3 -m http.server --directory _build/html 8000
+```
+
+A tároló GitHub-oldalán egyszer a **Settings → Pages → Build and deployment →
+Source → GitHub Actions** beállítást kell kiválasztani.

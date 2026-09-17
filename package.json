@@ -1,0 +1,14 @@
+{
+  "name": "matematikai-logika-vik-docs",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Interaktív Matematikai logika előadásjegyzetek",
+  "scripts": {
+    "docs:html": "sphinx-build -W --keep-going -b html docs _build/html && node scripts/stage-jscoq.mjs",
+    "proofs:check": "bash scripts/check-proofs.sh",
+    "practice:check": "node --check docs/_static/js/practice.js"
+  },
+  "devDependencies": {
+    "jscoq": "0.17.1"
+  }
+}

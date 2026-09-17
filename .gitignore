@@ -1,0 +1,9 @@
+_build/
+.venv/
+node_modules/
+
+*.aux
+*.glob
+*.vo
+*.vok
+*.vos

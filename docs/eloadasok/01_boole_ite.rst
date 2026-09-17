@@ -1,36 +1,13 @@
-1. óra: Boole-kifejezések és az ``Ite``
-=========================================
+1. óra: Boole-kifejezések és a ternáris kondicionális
+=====================================================
 
-Ezen az órán egy szándékosan kicsi nyelvet építünk. A nyelvben két konstans
-és egy háromargumentumú feltételes kifejezés van. Ez már elég ahhoz, hogy
-pontosan elkülönítsünk három fogalmat:
-
-* hogyan **épül fel** egy kifejezés;
-* mit **jelent** a kifejezés;
-* hogyan **értékeljük ki**.
+Írni fogunk egy programnyelvet, ami a logikát progrmaozza le. Két szint lesz: programok (milyen tanúsítványai lesznek az igaz állításoknak) és a programok típusai (ezek lesznek az állítások). Ezen az órán a típusok nyelvét építjünk fel.
 
 Az óra alapfájlja az
 `1/ite.v <https://github.com/mozow01/Matematikai-logika-VIK/blob/main/1/ite.v>`_.
 Töltsd le, nyisd meg CoqIDE-ban vagy VS Code-ban, és a saját próbáidat a fájl
 aljára írd. A lapon található zöld interaktív ablakok ugyanezeket a fogalmakat
 telepítés nélkül is kipróbálhatóvá teszik.
-
-.. important:: Az óra határa
-
-   Most kizárólag zárt ``Boole``-kifejezésekkel foglalkozunk. A cél nem egy
-   nagy programnyelv felépítése, hanem a szintaxis, a denotáció és a
-   kiértékelés közti különbség biztos megértése.
-
-Mire leszünk képesek az óra végén?
-----------------------------------
-
-* Megmondjuk egy Coq-kifejezésről, hogy helyes ``Boole``-kifejezés-e.
-* Felrajzoljuk vagy leolvassuk egy kifejezés szintaxisfáját.
-* Az ``Ite`` segítségével definiáljuk a negációt és a konjunkciót.
-* Kiszámítjuk egy kifejezés denotációját a beépített ``bool`` típusban.
-* Lépésenként követjük a ``beta_reduce`` kiértékelő működését.
-* Nem keverjük össze a szintaktikus azonosságot, az azonos kiértékelési
-  eredményt és az azonos denotációt.
 
 Három nézőpont ugyanarra a kifejezésre
 --------------------------------------
@@ -55,7 +32,7 @@ Három nézőpont ugyanarra a kifejezésre
      </section>
    </div>
 
-Ugyanazt a bemenetet két különböző függvénynek is átadhatjuk:
+Ugyanazt a bemenetet két különböző függvénynek is át fogjuk adni, az egyik egy fordító progam a Coq beépített bool típusába (denotáció szemantika), a másik a programfutást modellezi (operacionális szemantika).
 
 .. math::
 
@@ -67,12 +44,12 @@ Ugyanazt a bemenetet két különböző függvénynek is átadhatjuk:
    \end{cases}
 
 A két kimeneti típus különbözik. Ez később nagyon fontos lesz: ``Tru`` és
-``true`` nem ugyanaz a Coq-érték, még a kis- és nagybetű sem véletlen.
+``true`` nem ugyanaz a Coq-érték, az első a "játéknyelvi" érték, a másik a Coq belső bool értéke.
 
 A ``Boole`` nyelv szintaxisa
 ----------------------------
 
-A nyelvtant matematikailag így írhatjuk fel:
+Ez a "játéknyelv" az igaz-hamist és a ternáris kondicionálist adja meg. A nyelvtant a számítógéptudományban szokásos módon Bachus--Naur-formában adjuk meg:
 
 .. math::
 
@@ -80,7 +57,7 @@ A nyelvtant matematikailag így írhatjuk fel:
        \mid \mathsf{Fal}
        \mid \mathsf{Ite}\;A\;A\;A.
 
-Az utolsó eset rekurzív: az ``Ite`` mindhárom helyére ismét tetszőleges
+Ez egy rekurzív definíció: az ``Ite`` ("if-then-else") mindhárom helyére ismét tetszőleges
 ``Boole``-kifejezés kerülhet. A Coq-definíció ennek szinte szó szerinti
 fordítása:
 
@@ -91,7 +68,7 @@ fordítása:
    | Fal : Boole
    | Ite : Boole -> Boole -> Boole -> Boole.
 
-Az ``Inductive`` új típust vezet be. A három sor a típus **konstruktorait**
+Az ``Inductive`` primitív rekurzív, azaz építgetős módon egy új típust vezet be. A három sor a típus úgy nevezett **konstruktorait**, azaz építési szabályait
 adja meg.
 
 .. list-table:: Konstruktorok
@@ -177,7 +154,7 @@ Származtatott műveletek
 -----------------------
 
 A ``Boole`` típusnak továbbra is csak három konstruktora van. Mégis kényelmes
-neveket adhatunk gyakran használt ``Ite``-mintáknak. Ezek **definíciók**, nem
+neveket adhatunk gyakran használt logikai operátoroknak, mert a ternáris kondicionális tökéletesen alkalmas arra, hogy az összes logikai operátor kifejezhető legyen vele. Ezek **definíciók**, így tehát már nem
 új konstruktorok.
 
 Negáció
@@ -265,8 +242,8 @@ Ez ugyanazt az igazságfüggvényt írja le, de nem ugyanazt a szintaxisfát.
 Denotációs szemantika
 ---------------------
 
-A szintaxisfa önmagában csak szerkezet. Jelentést úgy adunk neki, hogy minden
-``Boole``-kifejezéshez hozzárendelünk egy beépített Coq-igazságértéket:
+A szintaxisfa önmagában csak szerkezet. Jelentést pl. úgy adunk neki, hogy minden
+``Boole``-kifejezéshez hozzárendelünk egy Coq-értéket. Ilyen szempontból most két szintünk van. Van a tárgynyelv (az Ite) és a metanyelv, a natív Coq. A denotációs szemantika nagyon kis igényű: lényegében egy szótár vagy még annál is kevesebb. Ha komoly "jelentéselméletet" akarunk csinálni, ami valóban magyaráz, akkor a nyelv gyakorlati használtát is be kell mutatnun. Ez lesz majd később az operacionális szemantika.
 
 .. math::
 
@@ -358,8 +335,8 @@ lehetséges igazságértékeket:
      destruct (denote A), (denote B); reflexivity.
    Qed.
 
-Ezen a ponton a tétel **jelentése** a fontos: eltérő programok ugyanazt a
-függvényt valósíthatják meg. A taktikákat az interaktív ablakban lépésenként
+Tehát, eltérő programok ugyanazt a
+fordítási értéket adják. A taktikákat az interaktív ablakban lépésenként
 is meg lehet figyelni.
 
 .. raw:: html
@@ -374,7 +351,7 @@ Operacionális szemantika: ``beta_reduce``
 
 A denotáció közvetlenül egy ``bool`` értéket ad. Az operacionális szemantika
 ezzel szemben azt írja le, hogyan értékeljük ki a saját nyelvünk
-kifejezéseit. Az eredmény továbbra is ``Boole`` típusú:
+kifejezéseit, hogyan futnak le a típusnyelv programjai. Az eredmény ``Boole`` típusú lesz, mert azt szeretnénk megérteni, mit lehet csinálni ezekkel a kifejezésekkel, hogyan futnak le a programok. A programfutást modellező függvény a **beta-redukció.**
 
 .. code-block:: coq
 
@@ -403,12 +380,6 @@ Coq-ban minden konstruktort le kell fednünk. Ez az ág egy még nem eldöntött
 feltételes kifejezést változatlanul a helyén hagyna. A fájl végén szereplő
 normalizációs tétel igazolja, hogy zárt ``Boole``-kifejezés teljes rekurzív
 kiértékelése valójában mindig ``Tru`` vagy ``Fal`` lesz.
-
-.. note:: A névről
-
-   A fájl ezt a függvényt ``beta_reduce``-nak nevezi. Itt a lényeg az, hogy
-   ez a kis nyelvünk rekurzív kiértékelője; nem a lambda-kalkulus teljes
-   béta-redukciós fogalmát vezetjük be.
 
 Lépésenkénti példa
 ~~~~~~~~~~~~~~~~~~
@@ -526,7 +497,7 @@ Az összehasonlítás összefoglalása:
 
    A „két kifejezés egyenlő” mondat önmagában félreérthető. Mindig mondd meg,
    hogy azonos szintaxisfáról, azonos redukált eredményről vagy azonos
-   denotációról beszélsz.
+   denotációról beszélsz. A programegyenlőség a számítógéptudomány centrális fogalma.
 
 Az alábbi Coq-példa ugyanarra a párra három külön állítást fogalmaz meg.
 
@@ -537,17 +508,15 @@ Az alábbi Coq-példa ugyanarra a párra három külön állítást fogalmaz meg
      title="A szintaxis, a redukció és a denotáció összehasonlításának interaktív Coq-példája"
      loading="lazy" allow="clipboard-write"></iframe>
 
-Kitekintés: mit mond ki a fájl vége?
+Matematikai tételek
 ------------------------------------
 
-Az ``ite.v`` végén két általános állítás szerepel. A bizonyítások nem
-gyakorlófeladatok, de az interaktív Coq-ablakokban mondatról mondatra
-végigléptethetők.
+A matematikusok szeretnel tételeket kimondani vizsgálódásuk tárgyairól, itt most két tétel lesz.
 
 Normálforma
 ~~~~~~~~~~~
 
-A fájl szerint egy kifejezés akkor van normálformában, ha ``Tru`` vagy
+Egy kifejezés akkor van normálformában, ha ``Tru`` vagy
 ``Fal``:
 
 .. code-block:: coq
@@ -555,8 +524,8 @@ A fájl szerint egy kifejezés akkor van normálformában, ha ``Tru`` vagy
    Definition is_normal (A : Boole) : Prop :=
      A = Tru \/ A = Fal.
 
-A ``weak_normalization`` tétel azt mondja, hogy minden ``Boole``-kifejezés
-teljes kiértékelése normálforma:
+A ``weak_normalization`` tétel azt mondja ki, hogy minden ``Boole``-kifejezés
+teljes beta-redukció általi kiértékelése normálforma:
 
 .. code-block:: coq
 
@@ -580,8 +549,8 @@ bizonyítást.
 A redukció megőrzi a jelentést
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-A ``denote_beta`` tétel szerint a kiértékelés nem változtatja meg a kifejezés
-denotációját:
+A ``denote_beta`` tétel szerint a kiértékelés (beta-redukció) nem változtatja meg a kifejezés
+fordítás utáni értékét:
 
 .. code-block:: coq
 
@@ -642,16 +611,3 @@ Mielőtt továbblépsz, próbáld meg segítség nélkül megválaszolni ezeket:
 6. Milyen típusú a ``beta_reduce A`` eredménye?
 7. Lehet-e két különböző szintaxisfának azonos denotációja?
 8. Miért csak az egyik ágat folytatjuk egy ``Ite`` kiértékelésekor?
-
-Rövid összefoglalás
--------------------
-
-* A ``Boole`` egy kifejezésnyelv absztrakt szintaxisa.
-* A ``Tru`` és ``Fal`` levelek, az ``Ite`` három részfát összekapcsoló
-  konstruktor.
-* A ``Neg``, ``And`` és ``And2`` nem konstruktor, hanem definiált
-  ``Ite``-minta.
-* A ``denote`` a saját nyelvből a Coq beépített ``bool`` típusába képez.
-* A ``beta_reduce`` a saját nyelven belül értékeli ki a kifejezést.
-* A szintaktikus azonosság, az azonos redukált eredmény és az azonos denotáció
-  három külön állítás.

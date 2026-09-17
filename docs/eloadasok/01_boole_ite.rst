@@ -540,8 +540,9 @@ Az alábbi Coq-példa ugyanarra a párra három külön állítást fogalmaz meg
 Kitekintés: mit mond ki a fájl vége?
 ------------------------------------
 
-Az ``ite.v`` végén két általános állítás szerepel. Ezek bizonyítása most nem
-gyakorlófeladat; egyelőre az állításukat érdemes érteni.
+Az ``ite.v`` végén két általános állítás szerepel. A bizonyítások nem
+gyakorlófeladatok, de az interaktív Coq-ablakokban mondatról mondatra
+végigléptethetők.
 
 Normálforma
 ~~~~~~~~~~~
@@ -562,6 +563,19 @@ teljes kiértékelése normálforma:
    Theorem weak_normalization :
      forall A : Boole,
        is_normal (beta_reduce A).
+
+A bizonyítás ``A`` felépítése szerinti indukció. A ``Tru`` és ``Fal`` eset
+közvetlen. Az ``Ite A1 A2 A3`` esetben az ``A1``-hez kapott indukciós
+feltevés mondja meg, hogy a feltétel ``Tru`` vagy ``Fal`` lesz. Ezután rendre
+az ``A2`` vagy az ``A3`` részfára vonatkozó indukciós feltevés zárja le a
+bizonyítást.
+
+.. raw:: html
+
+   <iframe class="rocq-frame rocq-frame--example"
+     src="../_static/rocq/ite-playground.html?example=normalization"
+     title="A gyenge normalizáció tételének interaktív Coq-bizonyítása"
+     loading="lazy" allow="clipboard-write"></iframe>
 
 A redukció megőrzi a jelentést
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -587,6 +601,19 @@ Ezt egy felcserélhető diagrammal szemléltethetjük:
 
 Akár előbb értékelünk ki és utána vesszük a jelentést, akár közvetlenül
 vesszük a jelentést, ugyanahhoz a ``bool`` értékhez jutunk.
+
+A bizonyítás itt is a kifejezés felépítése szerinti indukció. Az ``Ite``
+esetben háromfelé bontjuk azt, hogy mire redukálódik a feltétel. A
+feltételhez tartozó indukciós feltevés kapcsolja össze a redukált feltétel és
+az eredeti feltétel denotációját; ezután a kiválasztott ág indukciós
+feltevését használjuk.
+
+.. raw:: html
+
+   <iframe class="rocq-frame rocq-frame--example"
+     src="../_static/rocq/ite-playground.html?example=denote_beta"
+     title="A denote_beta tétel interaktív Coq-bizonyítása"
+     loading="lazy" allow="clipboard-write"></iframe>
 
 Gyakorlófeladatok
 -----------------

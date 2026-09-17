@@ -6,13 +6,13 @@ előadásjegyzete. A fogalmakat Coq-programok, kézzel követhető számítások
 azonnali visszajelzést adó gyakorlófeladatok kísérik.
 
 Az első előadás egy parányi logikai nyelvet épít fel. Különválasztjuk a
-kifejezések **szintaxisát**, **jelentését** és **kiértékelését**, majd ezt a
-Coq-ban is kipróbáljuk.
+kifejezések **szintaxisát**, **jelentését** és **kiértékelését**. A második
+előadáson adott típusú programokat írunk: ezek a programok egyben
+ellenőrizhető bizonyítások, vagyis tanúsítványok is.
 
 .. toctree::
    :maxdepth: 3
    :caption: Tartalom
-   :numbered:
 
    eloadasok/index
    coq_hasznalat

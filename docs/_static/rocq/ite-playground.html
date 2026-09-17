@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Boole és Ite – interaktív Coq-ablak</title>
+  <title>Boole, Ite és prg – interaktív Coq-ablak</title>
   <style>
     html, body, #ide-wrapper { height: 100%; margin: 0; }
     #document { padding: 0.75rem 1rem 2rem; }
@@ -88,6 +88,127 @@
         title: 'A beta-redukció megőrzi a denotációt',
         file: 'denote_beta.v',
       },
+      practice_beta_1: {
+        title: 'ITE-BETA-1 – Tru / Tru / Tru',
+        directory: 'eloadas_02',
+        file: 'practice_beta_1.v',
+        exercise: true,
+      },
+      practice_beta_2: {
+        title: 'ITE-BETA-2 – Tru / Fal / Fal',
+        directory: 'eloadas_02',
+        file: 'practice_beta_2.v',
+        exercise: true,
+      },
+      practice_beta_3: {
+        title: 'ITE-BETA-3 – Fal / Tru / Fal',
+        directory: 'eloadas_02',
+        file: 'practice_beta_3.v',
+        exercise: true,
+      },
+      practice_beta_4: {
+        title: 'ITE-BETA-4 – Fal / Fal / Tru',
+        directory: 'eloadas_02',
+        file: 'practice_beta_4.v',
+        exercise: true,
+      },
+      practice_connective_1: {
+        title: 'ITE-CONN-1 – Diszjunkció',
+        directory: 'eloadas_02',
+        file: 'practice_connective_1.v',
+        exercise: true,
+      },
+      practice_connective_2: {
+        title: 'ITE-CONN-2 – Implikáció',
+        directory: 'eloadas_02',
+        file: 'practice_connective_2.v',
+        exercise: true,
+      },
+      practice_connective_3: {
+        title: 'ITE-CONN-3 – Kizáró vagy',
+        directory: 'eloadas_02',
+        file: 'practice_connective_3.v',
+        exercise: true,
+      },
+      practice_connective_4: {
+        title: 'ITE-CONN-4 – Ekvivalencia',
+        directory: 'eloadas_02',
+        file: 'practice_connective_4.v',
+        exercise: true,
+      },
+      practice_denotation_1: {
+        title: 'ITE-DEN-1 – Kettős negáció',
+        directory: 'eloadas_02',
+        file: 'practice_denotation_1.v',
+        exercise: true,
+      },
+      practice_denotation_2: {
+        title: 'ITE-DEN-2 – Kommutativitás',
+        directory: 'eloadas_02',
+        file: 'practice_denotation_2.v',
+        exercise: true,
+      },
+      practice_denotation_3: {
+        title: 'ITE-DEN-3 – Asszociativitás',
+        directory: 'eloadas_02',
+        file: 'practice_denotation_3.v',
+        exercise: true,
+      },
+      practice_denotation_4: {
+        title: 'ITE-DEN-4 – De Morgan-azonosság',
+        directory: 'eloadas_02',
+        file: 'practice_denotation_4.v',
+        exercise: true,
+      },
+      practice_syntax_1: {
+        title: 'ITE-SYN-1 – Azonos igaz ágak',
+        directory: 'eloadas_02',
+        file: 'practice_syntax_1.v',
+        exercise: true,
+      },
+      practice_syntax_2: {
+        title: 'ITE-SYN-2 – Beágyazott állandó igaz',
+        directory: 'eloadas_02',
+        file: 'practice_syntax_2.v',
+        exercise: true,
+      },
+      practice_syntax_3: {
+        title: 'ITE-SYN-3 – Beágyazott állandó hamis',
+        directory: 'eloadas_02',
+        file: 'practice_syntax_3.v',
+        exercise: true,
+      },
+      practice_syntax_4: {
+        title: 'ITE-SYN-4 – Beágyazott konjunkció',
+        directory: 'eloadas_02',
+        file: 'practice_syntax_4.v',
+        exercise: true,
+      },
+      prg_passports: {
+        title: 'Programok mint tanúsítványok',
+        directory: 'eloadas_02',
+        file: 'prg_passports.v',
+      },
+      prg_rules: {
+        title: 'A prg nyolc konstruktora',
+        directory: 'eloadas_02',
+        file: 'prg_rules.v',
+      },
+      weakening: {
+        title: 'Gyengítés: weakening',
+        directory: 'eloadas_02',
+        file: 'weakening.v',
+      },
+      contradiction: {
+        title: 'Ellentmondás: contradictionI',
+        directory: 'eloadas_02',
+        file: 'contradiction.v',
+      },
+      and_intro: {
+        title: 'Konjunkció bevezetése: andI',
+        directory: 'eloadas_02',
+        file: 'and_intro.v',
+      },
     };
 
     const requested = new URLSearchParams(window.location.search).get('example');
@@ -120,9 +241,20 @@
 
       try {
         const sources = await Promise.all(selected.map(async example => {
-          const response = await fetch(`./examples/eloadas_01/${example.file}`);
+          const directory = example.directory ?? 'eloadas_01';
+          const response = await fetch(`./examples/${directory}/${example.file}`);
           if (!response.ok) throw new Error(`Nem sikerült betölteni: ${example.file}`);
-          return response.text();
+          const source = await response.text();
+          if (!example.exercise) return source;
+
+          const starter = source.replace(
+            /\nAbort\.\s*$/,
+            '\n  (* Ide írd a bizonyítást, majd zárd Qed.-del. *)\n',
+          );
+          if (starter === source) {
+            throw new Error(`A feladatból hiányzik a záró Abort.: ${example.file}`);
+          }
+          return starter;
         }));
 
         document.getElementById('coq-code').value = sources.join('\n\n');

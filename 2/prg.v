@@ -43,16 +43,22 @@ Inductive prg : list Boole -> Boole -> Type :=
 | iteSame : forall (G : list Boole) (A D : Boole),
     prg G (Ite A D D) -> prg G D.
 
+(* Motivacio: az iteI agai kibovitik a kontextust. A weakening a mar
+   meglevo utlevelet viszi at a vastagabb iratmappaba. *)
 Definition weakening
   {G : list Boole} {A B : Boole}
   (I : prg G A) : prg (B :: G) A :=
   vs G A B I.
 
+(* Motivacio: az abs szabalyhoz Fal kell. A contradictionI az A es Neg A
+   tanusitvanyokbol allit elo Fal-utlevelet. *)
 Definition contradictionI
   {G : list Boole} {A : Boole}
   (a : prg G A) (na : prg G (Neg A)) : prg G Fal :=
   iteTru G A Fal Tru na a.
 
+(* Motivacio: ket kulon A- es B-utlevelet egyetlen And2 A B utlevelbe
+   csomagolunk, es elrejtjuk az And2 belso Ite-kodolasat. *)
 Definition andI
   {G : list Boole} {A B : Boole}
   (a : prg G A) (b : prg G B) : prg G (And2 A B).

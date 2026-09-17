@@ -24,16 +24,20 @@ Inductive prg : list Boole -> Boole -> Type :=
 | iteSame : forall (G : list Boole) (A D : Boole),
     prg G (Ite A D D) -> prg G D.
 
+(* Miért írjuk meg? Az iteI ágai új feltevést tesznek a kontextus elé, ezért
+   a korábban megszerzett útlevelet rendszeresen vastagabb iratmappába kell
+   átvinnünk. Ezt az adminisztrációt csomagolja el a weakening. *)
 Definition weakening
   {G : list Boole} {A B : Boole}
   (I : prg G A) : prg (B :: G) A :=
   vs G A B I.
 
-(* A Tru-útlevél egy tetszőleges új feltételezés után is használható. *)
+(* Ez a példa megmutatja, hogy az új A iratot nem kötelező felhasználni. *)
 Definition weakening_pelda (A : Boole) : prg [A] Tru :=
   weakening (B := A) (tt []).
 
-(* Ugyanez taktikákkal: a cél típusa vezeti az építkezést. *)
+(* Miért mutatjuk meg újra? A taktikás alak láthatóvá teszi, hogy a Proof
+   mód ugyanazt a programot építi fel, mint a közvetlen vs-kifejezés. *)
 Definition weakening_taktikaval
   {G : list Boole} {A B : Boole}
   (I : prg G A) : prg (B :: G) A.

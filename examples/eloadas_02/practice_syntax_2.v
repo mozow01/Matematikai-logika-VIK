@@ -1,4 +1,4 @@
-(* Gyakorlás 14/16: beágyazott állandó igaz. *)
+(* 4/A gyakorlás: beágyazott állandó igaz. *)
 
 Inductive Boole : Type :=
 | Tru : Boole

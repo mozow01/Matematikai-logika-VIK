@@ -1,4 +1,4 @@
-(* Gyakorlás 16/16: beágyazott konjunkció és állandó hamis. *)
+(* 4/B gyakorlás: beágyazott konjunkció és állandó hamis. *)
 
 Inductive Boole : Type :=
 | Tru : Boole

@@ -42,34 +42,9 @@ Inductive prg : list Boole -> Boole -> Type :=
 | iteSame : forall (G : list Boole) (A D : Boole),
     prg G (Ite A D D) -> prg G D.
 
-(* Egy már meglévő tanúsítvány egy új feltételezés felvétele után is érvényes. *)
-Definition weakening
-  {G : list Boole} {A B : Boole}
-  (I : prg G A) : prg (B :: G) A :=
-  vs G A B I.
-
-(* A és Neg A együtt ellentmondást, azaz Fal tanúsítványát adják. *)
-Definition contradictionI
-  {G : list Boole} {A : Boole}
-  (a : prg G A) (na : prg G (Neg A)) : prg G Fal :=
-  iteTru G A Fal Tru na a.
-
-(* Két tanúsítványból elkészítjük az And2 A B tanúsítványát. *)
-Definition andI
-  {G : list Boole} {A B : Boole}
-  (a : prg G A) (b : prg G B) : prg G (And2 A B).
-Proof.
-  unfold And2.
-  apply iteI.
-  - exact (weakening (B := A) b).
-  - exact (contradictionI
-      (G := Neg A :: G)
-      (A := A)
-      (weakening (B := Neg A) a)
-      (vz G (Neg A))).
-Defined.
-
-(* Két apró útlevélpélda: a típusuk mondja meg, hová engednek be. *)
+(* Miért ezzel a két példával kezdünk? Az első megmutatja, hogy Tru falujába
+   iratok nélkül is beléphetünk. A második megmutatja, hogyan lesz a mappa
+   legfelső A iratából A célú útlevél. A típust mindig úticélként olvassuk. *)
 Definition igaz_utlevel : prg [] Tru :=
   tt [].
 

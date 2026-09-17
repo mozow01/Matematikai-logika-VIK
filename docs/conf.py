@@ -23,8 +23,12 @@ html_theme = "sphinx_rtd_theme"
 html_title = "Matematikai logika"
 html_baseurl = "https://mozow01.github.io/Matematikai-logika-VIK/"
 html_static_path = ["_static"]
-html_css_files = ["css/custom.css"]
-html_js_files = ["js/interactive-frames.js", "js/practice.js"]
+html_css_files = ["css/custom.css", "css/lesson2-practice.css"]
+html_js_files = [
+    "js/interactive-frames.js",
+    "js/practice.js",
+    "js/lesson2-practice.js",
+]
 
 html_context = {
     "display_github": True,

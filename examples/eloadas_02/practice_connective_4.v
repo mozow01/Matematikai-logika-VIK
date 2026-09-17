@@ -1,4 +1,4 @@
-(* Gyakorlás 8/16: az ekvivalencia denotációja. *)
+(* 2/B gyakorlás: az ekvivalencia denotációja. *)
 
 Require Import Coq.Bool.Bool.
 

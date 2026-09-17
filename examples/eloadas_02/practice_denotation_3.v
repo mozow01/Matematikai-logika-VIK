@@ -1,4 +1,4 @@
-(* Gyakorlás 11/16: a konjunkció denotációs asszociativitása. *)
+(* 3/A gyakorlás: a konjunkció denotációs asszociativitása. *)
 
 Inductive Boole : Type :=
 | Tru : Boole

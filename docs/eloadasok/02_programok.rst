@@ -14,20 +14,37 @@ ezeket az első órai fájl aljára írd. Az új ``prg``-anyag szerkeszthető
 alapfájlja már a
 `2/prg.v <https://github.com/mozow01/Matematikai-logika-VIK/blob/main/2/prg.v>`_.
 
-Bemelegítés: az ITE 4×4 feladatbank
+Bemelegítés: az ITE 4×2 feladatbank
 -----------------------------------
 
-Az alábbi tizenhat feladat ugyanaz a négy kategória, kategóriánként négy
-variánssal, amelyből a Moodle **mind a négy kategóriából egy-egy** véletlen
-kérdést választ. Itt mindegyiket külön jsCoq-ablakban lehet kipróbálni. A
-négy pozíció így összesen :math:`4^4=256` különböző feladatsort adhat. A
-sorrend szándékos:
+A gyakorló ugyanazt a négyféle gondolkodásmódot kéri számon, mint az első
+Moodle-feladatsor, de csak a két-két fajsúlyosabb változatot tartja meg.
+Mind a négy kategóriából egy feladat kerül az aktuális sorba, ezért összesen
+:math:`2^4=16` különböző összeállítás sorsolható. A sorrend szándékos:
 
 1. először kiértékelési útvonalakat követünk;
 2. utána logikai műveletek jelentését igazoljuk;
 3. denotációs azonosságokat bizonyítunk;
 4. végül egyszerre beszélünk szintaktikai különbözőségről és azonos
    jelentésről.
+
+Kattintgatós gyakorló
+~~~~~~~~~~~~~~~~~~~~~
+
+Válassz minden csoportban ``A`` vagy ``B`` változatot, vagy kérj véletlen
+feladatsort. A felület helyben, automatikusan ellenőrzi a válaszokat. A
+``Folytatás jsCoq-ban`` gomb mindig éppen a kiválasztott tételt nyitja meg,
+így a felismerés után a teljes bizonyítást is megírhatod.
+
+.. raw:: html
+
+   <div data-lesson2-practice
+        data-jscoq-url="../_static/rocq/ite-playground.html">
+     <noscript>A kattintgatós gyakorlóhoz engedélyezni kell a JavaScriptet.</noscript>
+   </div>
+
+A nyolc feladat jsCoq-ablakai
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 Az ablakban léptess a ``Proof.`` sorig. Ott nyitott bizonyítási cél vár:
 írd a komment helyére a taktikáidat, végül zárd a bizonyítást ``Qed.``-del.
@@ -46,30 +63,11 @@ Az ablakban léptess a ``Proof.`` sorig. Ott nyitott bizonyítási cél vár:
 1. csoport: háromszintű béta-redukció
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Mind a négy feladatban belülről kifelé kell megállapítani, hogy az egymásba
+Mindkét feladatban belülről kifelé kell megállapítani, hogy az egymásba
 ágyazott feltételek melyik ágat választják. A hipotéziseket érdemes névvel
 bevezetni, majd a ``simpl`` után ezekkel átírni a célt.
 
-1/A – ``Tru / Tru / Tru``
-^^^^^^^^^^^^^^^^^^^^^^^^^
-
-.. code-block:: coq
-
-   Theorem beta_nested_ttt :
-     forall A B C D E F G,
-       beta_reduce A = Tru ->
-       beta_reduce B = Tru ->
-       beta_reduce D = Tru ->
-       beta_reduce (Ite (Ite (Ite A B C) D E) F G) = beta_reduce F.
-
-.. raw:: html
-
-   <iframe class="rocq-frame rocq-frame--example"
-     src="../_static/rocq/ite-playground.html?example=practice_beta_1"
-     title="ITE 4x4: háromszintű béta-redukció, Tru Tru Tru"
-     loading="lazy" allow="clipboard-write"></iframe>
-
-1/B – ``Tru / Fal / Fal``
+1/A – ``Tru / Fal / Fal``
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. code-block:: coq
@@ -85,29 +83,10 @@ bevezetni, majd a ``simpl`` után ezekkel átírni a célt.
 
    <iframe class="rocq-frame rocq-frame--example"
      src="../_static/rocq/ite-playground.html?example=practice_beta_2"
-     title="ITE 4x4: háromszintű béta-redukció, Tru Fal Fal"
+     title="ITE 4x2: háromszintű béta-redukció, Tru Fal Fal"
      loading="lazy" allow="clipboard-write"></iframe>
 
-1/C – ``Fal / Tru / Fal``
-^^^^^^^^^^^^^^^^^^^^^^^^^
-
-.. code-block:: coq
-
-   Theorem beta_nested_ftf :
-     forall A B C D E F G,
-       beta_reduce A = Fal ->
-       beta_reduce C = Tru ->
-       beta_reduce D = Fal ->
-       beta_reduce (Ite (Ite (Ite A B C) D E) F G) = beta_reduce G.
-
-.. raw:: html
-
-   <iframe class="rocq-frame rocq-frame--example"
-     src="../_static/rocq/ite-playground.html?example=practice_beta_3"
-     title="ITE 4x4: háromszintű béta-redukció, Fal Tru Fal"
-     loading="lazy" allow="clipboard-write"></iframe>
-
-1/D – ``Fal / Fal / Tru``
+1/B – ``Fal / Fal / Tru``
 ^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. code-block:: coq
@@ -123,7 +102,7 @@ bevezetni, majd a ``simpl`` után ezekkel átírni a célt.
 
    <iframe class="rocq-frame rocq-frame--example"
      src="../_static/rocq/ite-playground.html?example=practice_beta_4"
-     title="ITE 4x4: háromszintű béta-redukció, Fal Fal Tru"
+     title="ITE 4x2: háromszintű béta-redukció, Fal Fal Tru"
      loading="lazy" allow="clipboard-write"></iframe>
 
 2. csoport: származtatott műveletek denotációja
@@ -133,40 +112,7 @@ Most egy-egy ``Ite``-kódolásról kell megmutatni, hogy ugyanazt az
 igazságfüggvényt jelenti, mint a Coq megfelelő ``bool``-művelete. Itt nem a
 két szintaxisfa egyenlőségét, hanem a denotációk egyenlőségét bizonyítjuk.
 
-2/A – Diszjunkció
-^^^^^^^^^^^^^^^^^
-
-.. code-block:: coq
-
-   Theorem ite_or_denote :
-     forall A B,
-       denote (Ite A Tru B) = orb (denote A) (denote B).
-
-.. raw:: html
-
-   <iframe class="rocq-frame rocq-frame--example"
-     src="../_static/rocq/ite-playground.html?example=practice_connective_1"
-     title="ITE 4x4: diszjunkció denotációja"
-     loading="lazy" allow="clipboard-write"></iframe>
-
-2/B – Implikáció
-^^^^^^^^^^^^^^^^
-
-.. code-block:: coq
-
-   Theorem ite_imp_denote :
-     forall A B,
-       denote (Ite A B Tru) =
-       orb (negb (denote A)) (denote B).
-
-.. raw:: html
-
-   <iframe class="rocq-frame rocq-frame--example"
-     src="../_static/rocq/ite-playground.html?example=practice_connective_2"
-     title="ITE 4x4: implikáció denotációja"
-     loading="lazy" allow="clipboard-write"></iframe>
-
-2/C – Kizáró vagy
+2/A – Kizáró vagy
 ^^^^^^^^^^^^^^^^^
 
 .. code-block:: coq
@@ -179,10 +125,10 @@ két szintaxisfa egyenlőségét, hanem a denotációk egyenlőségét bizonyít
 
    <iframe class="rocq-frame rocq-frame--example"
      src="../_static/rocq/ite-playground.html?example=practice_connective_3"
-     title="ITE 4x4: kizáró vagy denotációja"
+     title="ITE 4x2: kizáró vagy denotációja"
      loading="lazy" allow="clipboard-write"></iframe>
 
-2/D – Ekvivalencia
+2/B – Ekvivalencia
 ^^^^^^^^^^^^^^^^^^
 
 .. code-block:: coq
@@ -196,7 +142,7 @@ két szintaxisfa egyenlőségét, hanem a denotációk egyenlőségét bizonyít
 
    <iframe class="rocq-frame rocq-frame--example"
      src="../_static/rocq/ite-playground.html?example=practice_connective_4"
-     title="ITE 4x4: ekvivalencia denotációja"
+     title="ITE 4x2: ekvivalencia denotációja"
      loading="lazy" allow="clipboard-write"></iframe>
 
 3. csoport: denotációs azonosságok
@@ -207,39 +153,7 @@ lehet közvetlenül ``Tru`` és ``Fal`` esetekre bontani, mert az ``Ite`` is
 ``Boole`` konstruktor. A ``denote A : bool`` értéke viszont valóban kétféle;
 ezért többnyire azon érdemes esetbontást végezni.
 
-3/A – Kettős negáció
-^^^^^^^^^^^^^^^^^^^^
-
-.. code-block:: coq
-
-   Theorem double_neg_denote :
-     forall A,
-       denote (Neg (Neg A)) = denote A.
-
-.. raw:: html
-
-   <iframe class="rocq-frame rocq-frame--example"
-     src="../_static/rocq/ite-playground.html?example=practice_denotation_1"
-     title="ITE 4x4: kettős negáció denotációja"
-     loading="lazy" allow="clipboard-write"></iframe>
-
-3/B – A konjunkció kommutativitása
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-.. code-block:: coq
-
-   Theorem and2_comm_denote :
-     forall A B,
-       denote (And2 A B) = denote (And2 B A).
-
-.. raw:: html
-
-   <iframe class="rocq-frame rocq-frame--example"
-     src="../_static/rocq/ite-playground.html?example=practice_denotation_2"
-     title="ITE 4x4: a konjunkció denotációs kommutativitása"
-     loading="lazy" allow="clipboard-write"></iframe>
-
-3/C – A konjunkció asszociativitása
+3/A – A konjunkció asszociativitása
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. code-block:: coq
@@ -253,10 +167,10 @@ ezért többnyire azon érdemes esetbontást végezni.
 
    <iframe class="rocq-frame rocq-frame--example"
      src="../_static/rocq/ite-playground.html?example=practice_denotation_3"
-     title="ITE 4x4: a konjunkció denotációs asszociativitása"
+     title="ITE 4x2: a konjunkció denotációs asszociativitása"
      loading="lazy" allow="clipboard-write"></iframe>
 
-3/D – De Morgan-azonosság
+3/B – De Morgan-azonosság
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. code-block:: coq
@@ -270,7 +184,7 @@ ezért többnyire azon érdemes esetbontást végezni.
 
    <iframe class="rocq-frame rocq-frame--example"
      src="../_static/rocq/ite-playground.html?example=practice_denotation_4"
-     title="ITE 4x4: De Morgan-azonosság denotációval"
+     title="ITE 4x2: De Morgan-azonosság denotációval"
      loading="lazy" allow="clipboard-write"></iframe>
 
 4. csoport: szintaxis és szemantika
@@ -281,24 +195,7 @@ kifejezés **nem ugyanaz a szintaxisfa**; ezt a konstruktorok különbözősége
 adja. A második fele azt mondja ki, hogy a két kifejezésnek mégis **azonos a
 denotációja**. A ``split`` után ezért a két részcél egészen más módszert kér.
 
-4/A – Azonos igaz ágak
-^^^^^^^^^^^^^^^^^^^^^^
-
-.. code-block:: coq
-
-   Theorem same_true_branches :
-     forall A,
-       Ite A Tru Tru <> Tru /\
-       denote (Ite A Tru Tru) = denote Tru.
-
-.. raw:: html
-
-   <iframe class="rocq-frame rocq-frame--example"
-     src="../_static/rocq/ite-playground.html?example=practice_syntax_1"
-     title="ITE 4x4: azonos igaz ágak"
-     loading="lazy" allow="clipboard-write"></iframe>
-
-4/B – Beágyazott állandó igaz
+4/A – Beágyazott állandó igaz
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. code-block:: coq
@@ -312,27 +209,10 @@ denotációja**. A ``split`` után ezért a két részcél egészen más módsze
 
    <iframe class="rocq-frame rocq-frame--example"
      src="../_static/rocq/ite-playground.html?example=practice_syntax_2"
-     title="ITE 4x4: beágyazott állandó igaz"
+     title="ITE 4x2: beágyazott állandó igaz"
      loading="lazy" allow="clipboard-write"></iframe>
 
-4/C – Beágyazott állandó hamis
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-.. code-block:: coq
-
-   Theorem nested_false_branches :
-     forall A B,
-       Ite A (Ite B Fal Fal) Fal <> Fal /\
-       denote (Ite A (Ite B Fal Fal) Fal) = denote Fal.
-
-.. raw:: html
-
-   <iframe class="rocq-frame rocq-frame--example"
-     src="../_static/rocq/ite-playground.html?example=practice_syntax_3"
-     title="ITE 4x4: beágyazott állandó hamis"
-     loading="lazy" allow="clipboard-write"></iframe>
-
-4/D – Beágyazott konjunkció, állandó hamis
+4/B – Beágyazott konjunkció, állandó hamis
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. code-block:: coq
@@ -346,7 +226,7 @@ denotációja**. A ``split`` után ezért a két részcél egészen más módsze
 
    <iframe class="rocq-frame rocq-frame--example"
      src="../_static/rocq/ite-playground.html?example=practice_syntax_4"
-     title="ITE 4x4: beágyazott konjunkció, állandó hamis"
+     title="ITE 4x2: beágyazott konjunkció, állandó hamis"
      loading="lazy" allow="clipboard-write"></iframe>
 
 Új anyag: belépés Boole falvaiba
@@ -420,6 +300,14 @@ konjunkció: azt jelenti, hogy ``G`` elé még felvettük ``A``-t.
 
 A programnyelv definíciója
 --------------------------
+
+.. admonition:: Miért vezetünk be új típust?
+
+   A ``Boole`` eddig csak azt mondta meg, **milyen állítást** szeretnénk
+   megfogalmazni. Most azt is nyilván kell tartanunk, **milyen iratokból** és
+   **mely szabályokkal** jutottunk el hozzá. A ``prg G A`` ezt a hiányzó
+   tanúsítványréteget adja hozzá: lakói azok a programok, amelyeket a Coq
+   elfogad ``A`` útleveleként a ``G`` iratmappa mellett.
 
 .. code-block:: coq
 
@@ -588,7 +476,16 @@ Az alábbi ablakban mind a nyolc konstruktor típusát és néhány apró
 Első összetett program: ``weakening``
 -------------------------------------
 
-A gyengítést kényelmes névvel is ellátjuk:
+.. admonition:: Miért írjuk meg?
+
+   Az ``iteI`` mindkét ágban új iratot tesz a kontextus tetejére. Emiatt a
+   ``G`` alatt már megszerzett útleveleinket rendszeresen át kell vinnünk
+   ``A :: G``, illetve ``Neg A :: G`` alá. A ``weakening`` ezt az
+   adminisztratív lépést csomagolja el: az úti cél nem változik, csak
+   vastagabb lesz az iratmappa. Így a későbbi programokban a logikai ötlet
+   látszik a ``vs`` paramétereinek ismételgetése helyett.
+
+A gyengítést ezért kényelmes névvel látjuk el:
 
 .. code-block:: coq
 
@@ -606,7 +503,9 @@ azt, mi ``B``. Ha mégsem, név szerint is megadhatjuk:
    weakening (B := C) i
 
 Ha ``i : prg G A``, ennek típusa ``prg (C :: G) A``. A program nem nyúl
-``C``-hez: csak megőrzi a régi útlevelet egy vastagabb iratmappában.
+``C``-hez: csak megőrzi a régi útlevelet egy vastagabb iratmappában. Egy
+hívás egyetlen új feltevést vesz fel; többszöri alkalmazással tetszőlegesen
+bővíthetjük a kontextust.
 
 .. raw:: html
 
@@ -617,6 +516,14 @@ Ha ``i : prg G A``, ennek típusa ``prg (C :: G) A``. A program nem nyúl
 
 Ellentmondás készítése: ``contradictionI``
 ------------------------------------------
+
+.. admonition:: Miért írjuk meg?
+
+   Az ``abs`` csak akkor enged bármely faluba, ha már van ``Fal``-útlevelünk.
+   A gyakorlatban viszont gyakran nem ``Fal``-t kapunk közvetlenül, hanem
+   külön egy ``A``- és egy ``Neg A``-tanúsítványt. A ``contradictionI`` a
+   kettő közötti újrahasználható híd: egyszer előállítja belőlük ``Fal``-t,
+   amelyet aztán az ``abs`` bármely további célhoz felhasználhat.
 
 Tegyük fel, hogy ugyanabban a ``G`` kontextusban van
 
@@ -658,6 +565,16 @@ tanúsítványát.
 
 Konjunkció bevezetése: ``andI``
 -------------------------------
+
+.. admonition:: Miért írjuk meg?
+
+   Az ``And2 A B`` belül csak az ``Ite A B Fal`` kódolás. Programíráskor
+   azonban a megszokott felületet szeretnénk: egy ``A``-útlevélből és egy
+   ``B``-útlevélből közvetlenül kapjunk közös ``And2 A B``-útlevelet. Az
+   ``andI`` elrejti az esetfelbontás, a gyengítés és az ellentmondás
+   adminisztrációját. Miután a Coq egyszer ellenőrizte, biztonságos
+   építőelemként használhatjuk anélkül, hogy újra ismernünk kellene a
+   kódolás belsejét.
 
 Most tegyük fel, hogy ugyanabban a kontextusban van egy ``A``- és egy
 ``B``-tanúsítványunk:

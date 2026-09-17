@@ -37,7 +37,10 @@ Check iteTru.
 Check iteFal.
 Check iteSame.
 
-(* vz: a környezet első bejegyzéséhez azonnal van útlevelünk. *)
+(* Miért írjuk le ezeket a példákat? Nem új szabályokat vezetünk be, hanem
+   minimális használati sablont adunk mind a nyolc konstruktorhoz. *)
+
+(* vz: a környezet első bejegyzéséből útlevelet állítunk ki. *)
 Definition vz_pelda (G : list Boole) (A : Boole) : prg (A :: G) A :=
   vz G A.
 
@@ -55,23 +58,28 @@ Definition abs_pelda
   (G : list Boole) (A : Boole) (p : prg G Fal) : prg G A :=
   abs G A p.
 
-(* Az Ite négy szabályát közvetlenül a konstruktorokkal használjuk. *)
+(* iteI: akkor készíthetünk feltételes útlevelet, ha mindkét lehetséges
+   ághoz előre van ellenőrzött útvonalunk. *)
 Definition iteI_pelda
   (G : list Boole) (A B C : Boole)
   (p : prg (A :: G) B) (q : prg (Neg A :: G) C) :
   prg G (Ite A B C) :=
   iteI G A B C p q.
 
+(* iteTru: A tanúsítványa kiválasztja a feltételes igaz ágát. *)
 Definition iteTru_pelda
   (G : list Boole) (A B C : Boole)
   (p : prg G (Ite A B C)) (a : prg G A) : prg G B :=
   iteTru G A B C p a.
 
+(* iteFal: Neg A tanúsítványa a feltételes hamis ágát választja ki. *)
 Definition iteFal_pelda
   (G : list Boole) (A B C : Boole)
   (p : prg G (Ite A B C)) (na : prg G (Neg A)) : prg G C :=
   iteFal G A B C p na.
 
+(* iteSame: azonos úti céloknál a prg szabálya megengedi a feltétel
+   elfelejtését; ehhez nem kell A-t kiértékelnünk. *)
 Definition iteSame_pelda
   (G : list Boole) (A D : Boole)
   (p : prg G (Ite A D D)) : prg G D :=

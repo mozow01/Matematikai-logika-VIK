@@ -1,4 +1,4 @@
-(* Gyakorlás 12/16: De Morgan azonossága denotációval. *)
+(* 3/B gyakorlás: De Morgan azonossága denotációval. *)
 
 Inductive Boole : Type :=
 | Tru : Boole

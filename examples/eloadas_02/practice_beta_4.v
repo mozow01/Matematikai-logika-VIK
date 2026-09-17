@@ -1,4 +1,4 @@
-(* Gyakorlás 4/16: háromszintű béta-redukció (Fal/Fal/Tru). *)
+(* 1/B gyakorlás: háromszintű béta-redukció (Fal/Fal/Tru). *)
 
 Inductive Boole : Type :=
 | Tru : Boole

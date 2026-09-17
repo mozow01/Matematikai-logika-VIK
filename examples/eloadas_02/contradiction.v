@@ -24,12 +24,16 @@ Inductive prg : list Boole -> Boole -> Type :=
 | iteSame : forall (G : list Boole) (A D : Boole),
     prg G (Ite A D D) -> prg G D.
 
+(* Miért írjuk meg? Az abs-hoz Fal kell, miközben gyakran külön A és Neg A
+   útlevelünk van. A contradictionI ezekből készíti el az újrahasználható
+   Fal-útlevelet, amely később bármely cél felé továbbvezethet. *)
 Definition contradictionI
   {G : list Boole} {A : Boole}
   (a : prg G A) (na : prg G (Neg A)) : prg G Fal :=
   iteTru G A Fal Tru na a.
 
-(* A [Neg A; A] környezetből mindkét szükséges útlevelet kiolvassuk. *)
+(* Ez a példa megmutatja, hogyan olvassuk ki a két szükséges tanúsítványt a
+   kontextus két különböző helyéről. *)
 Definition contradiction_pelda (A : Boole) : prg [Neg A; A] Fal :=
   contradictionI
     (A := A)

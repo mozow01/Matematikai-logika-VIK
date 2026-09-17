@@ -1,4 +1,4 @@
-(* Gyakorlás 7/16: a kizáró vagy denotációja. *)
+(* 2/A gyakorlás: a kizáró vagy denotációja. *)
 
 Inductive Boole : Type :=
 | Tru : Boole

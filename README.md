@@ -1,6 +1,8 @@
 #  Matematikai logika
 Alkalmazott lineáris algebra és matematikai logika
 
+> **[Interaktív előadásjegyzet megnyitása →](https://mozow01.github.io/Matematikai-logika-VIK/)**
+
 (Alkalmazott lineáris algebra) és matematikai logika
 
 Alkalmazott (lineáris algebra és matematikai logika) -> (Alkalmazott lineáris algebra) és (Alkalmazott matematikai logika)
@@ -85,10 +87,7 @@ https://www.lri.fr/~paulin/LASER/course-notes.pdf
 
 https://softwarefoundations.cis.upenn.edu/lf-current/index.html
 
-## Online előadásjegyzet
-
-Az interaktív GitHub Pages-jegyzet címe:
-<https://mozow01.github.io/Matematikai-logika-VIK/>
+## A jegyzet helyi ellenőrzése
 
 Az oldal Sphinxszel készül. A Coq-példák böngészőben, jsCoq segítségével is
 futtathatók. Helyi ellenőrzés:

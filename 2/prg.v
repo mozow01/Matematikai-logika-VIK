@@ -57,6 +57,13 @@ Definition contradictionI
   (a : prg G A) (na : prg G (Neg A)) : prg G Fal :=
   iteTru G A Fal Tru na a.
 
+
+(* Curry--Howard izomorfizmus 
+
+p : A
+
+*)
+
 (* Motivacio: ket kulon A- es B-utlevelet egyetlen And2 A B utlevelbe
    csomagolunk, es elrejtjuk az And2 belso Ite-kodolasat. *)
 Definition andI
@@ -65,10 +72,11 @@ Definition andI
 Proof.
   unfold And2.
   apply iteI.
-  - exact (weakening (B := A) b).
-  - exact (contradictionI
-             (G := Neg A :: G)
-             (A := A)
-             (weakening (B := Neg A) a)
-             (vz G (Neg A))).
-Defined.
+  * apply vs. auto.
+  * assert (H : prg (Neg A :: G) A).
+    { apply vs. auto. }
+    assert (K : prg (Neg A :: G) (Neg A)).
+    { apply vz. }
+    apply @contradictionI with (A:=A). 
+    all: auto.
+  Defined.

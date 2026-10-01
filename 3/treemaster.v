@@ -37,4 +37,4 @@ Fixpoint oplus (t1 t2 : bintree) : bintree :=
 
 Notation "t1 ⊕ t2" :=
   (oplus t1 t2)
-  (left associativity, at level 50).
+  (left associativity, at level 50). 

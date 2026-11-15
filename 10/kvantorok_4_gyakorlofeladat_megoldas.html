@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="hu">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Kvantorok – megoldások</title>
+  <style>
+    body { max-width: 850px; margin: 2rem auto; padding: 0 1rem; font: 17px/1.55 sans-serif; }
+    code, pre { font-family: monospace; }
+    pre { overflow-x: auto; padding: 1rem; background: #f3f3f3; }
+    section { margin-top: 2.5rem; }
+  </style>
+</head>
+<body>
+  <h1>Kvantorok – megoldások</h1>
+  <p><a href="kvantorok_4_gyakorlofeladat.html">Vissza a gyakorlóhoz</a></p>
+
+  <section>
+    <h2>1. feladat</h2>
+    <p><strong>1. fa – C program, 2. fa – A program, 3. fa – B program.</strong></p>
+    <p>A C programban az egzisztenciális feltevés felbontása megelőzi a diszjunkció jobb oldalának kiválasztását. Az A program közvetlenül felhasználja a már meglévő egzisztenciális bizonyítást. A B program előbb választja a diszjunkció jobb oldalát, majd felbontja és ugyanazzal a tanúval újra felépíti az egzisztenciális állítást.</p>
+  </section>
+
+  <section>
+    <h2>2. feladat</h2>
+    <p><strong>A helyes válasz: A program.</strong></p>
+    <p>A <code>left</code> a diszjunkció bal oldalát választja. Az <code>intro a</code> felel meg a ∀-bevezetésnek, a <code>proj2 H</code> a konjunkció második tagját adja, ennek <code>a</code>-ra alkalmazása pedig ∀-elimináció.</p>
+  </section>
+
+  <section>
+    <h2>3. feladat</h2>
+    <p><strong>A helyes válasz: B.</strong></p>
+    <pre>(∀x A(x)) → ∃y C(y)
+≡ ¬∀x A(x) ∨ ∃y C(y)
+≡ ∃x (¬A(x) ∨ ∃y C(y))
+≡ ∃x (A(x) → ∃y C(y)).</pre>
+    <p>Ha van át nem vizsgált könyv, az tanúként használható a hamis előtagú implikációhoz. Ha minden könyvet átvizsgálnak, mindkét állítás legalább egy címkézett könyvet követel.</p>
+  </section>
+
+  <section>
+    <h2>4. feladat</h2>
+    <p><strong>A helyes válasz: A.</strong></p>
+    <pre>¬∀x (B(x) → V(x))
+≡ ∃x ¬(B(x) → V(x))
+≡ ∃x (B(x) ∧ ¬V(x)).</pre>
+    <p>A „nem minden” egy ellenpélda létezését jelenti: van olyan hallgató, aki beadta a feladatot, de nem kapott visszajelzést.</p>
+  </section>
+
+  <p>A Coq-bizonyítások: <a href="kvantorok_4_gyakorlofeladat.v">kvantorok_4_gyakorlofeladat.v</a>.</p>
+</body>
+</html>

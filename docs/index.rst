@@ -10,6 +10,14 @@ kifejezések **szintaxisát**, **jelentését** és **kiértékelését**. A má
 előadáson adott típusú programokat írunk: ezek a programok egyben
 ellenőrizhető bizonyítások, vagyis tanúsítványok is.
 
+Kvantoros gyakorló
+------------------
+
+`A négy gyakorlófeladat megnyitása <10/kvantorok_4_gyakorlofeladat.html>`_
+
+A gyakorló önálló HTML-oldal, a levezetésfákat és a másolható Coq-kódokat is
+tartalmazza. A megoldások az oldal végén találhatók.
+
 .. toctree::
    :maxdepth: 3
    :caption: Tartalom

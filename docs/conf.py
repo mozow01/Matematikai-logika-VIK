@@ -31,6 +31,9 @@ html_js_files = [
     "js/lesson3-4-practice.js",
     "js/lesson5-practice.js",
     "js/lesson6-practice.js",
+    "js/lesson7-practice.js",
+    "js/lesson8-practice.js",
+    "js/lesson9-practice.js",
 ]
 
 html_context = {

@@ -83,6 +83,16 @@
   transition: height 180ms ease;
 }
 
+.practice-frame {
+  display: block;
+  width: 100%;
+  min-height: 1200px;
+  margin: 1rem 0 2rem;
+  border: 1px solid var(--logic-border);
+  border-radius: 6px;
+  background: #fff;
+}
+
 .practice-shell {
   margin: 1.5rem 0 2rem;
   padding: 1.25rem;

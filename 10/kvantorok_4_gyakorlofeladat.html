@@ -20,6 +20,17 @@ table { border-collapse: collapse; width: 100%; } th, td { text-align: left; pad
 .key { font-weight: bold; } .meta, footer { font-size: 14px; } footer { margin-top: 30px; }
 @media (max-width: 600px) { .tree { min-width: 560px; } pre { font-size: 12px; } }
 @media print { nav, footer, .interactive-note { display: none; } .solutions { break-before: page; } pre { white-space: pre-wrap; } figure, pre { break-inside: avoid; } .tree { min-width: 0; } }
+.interactive-mode { margin-top: 0; }
+.interactive-mode > main > header,
+.interactive-mode .solutions,
+.interactive-mode footer { display: none; }
+.interactive-mode .exercise:first-of-type { margin-top: 0; padding-top: 0; border-top: 0; }
+.check-button { border: 0; border-radius: 5px; padding: 10px 16px; color: white; background: #004d40; font: 600 16px/1.2 Arial, sans-serif; cursor: pointer; }
+.check-button:hover { background: #00695c; }
+.check-feedback { min-height: 24px; margin-top: 12px; padding: 10px 12px; border-radius: 5px; }
+.check-feedback:empty { display: none; }
+.check-feedback.correct { border: 1px solid #86efac; color: #166534; background: #ecfdf3; }
+.check-feedback.incorrect { border: 1px solid #fda4af; color: #9f1239; background: #fff1f2; }
 </style>
 </head>
 <body>
@@ -252,5 +263,72 @@ Qed.</code></pre>
     <p><a href="#feladat-1">Vissza az első feladathoz</a></p>
   </footer>
 </main>
+<script>
+(() => {
+  if (new URLSearchParams(window.location.search).get('interactive') !== '1') return;
+
+  document.body.classList.add('interactive-mode');
+
+  const checks = {
+    'feladat-1': () => {
+      const values = ['fa-1', 'fa-2', 'fa-3'].map(id => document.getElementById(id)?.value);
+      if (values.some(value => !value)) return { missing: true };
+      return { correct: values.join(',') === 'C,A,B' };
+    },
+    'feladat-2': () => radioResult('feladat2', 'A'),
+    'feladat-3': () => radioResult('feladat3', 'B'),
+    'feladat-4': () => radioResult('feladat4', 'A')
+  };
+
+  function radioResult(name, answer) {
+    const selected = document.querySelector('input[name="' + name + '"]:checked');
+    if (!selected) return { missing: true };
+    return { correct: selected.value === answer };
+  }
+
+  Object.entries(checks).forEach(([id, check]) => {
+    const exercise = document.getElementById(id);
+    if (!exercise) return;
+
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.className = 'check-button';
+    button.textContent = 'Ellenőrzés';
+
+    const feedback = document.createElement('p');
+    feedback.className = 'check-feedback';
+    feedback.setAttribute('aria-live', 'polite');
+
+    button.addEventListener('click', () => {
+      const result = check();
+      feedback.classList.remove('correct', 'incorrect');
+      if (result.missing) {
+        feedback.textContent = 'Előbb jelöljön meg minden szükséges választ.';
+        feedback.classList.add('incorrect');
+      } else if (result.correct) {
+        feedback.textContent = 'Helyes megoldás.';
+        feedback.classList.add('correct');
+      } else {
+        feedback.textContent = 'Ez még nem helyes. Vizsgálja meg a szabályok és a programlépések sorrendjét.';
+        feedback.classList.add('incorrect');
+      }
+      sendHeight();
+    });
+
+    exercise.append(button, feedback);
+  });
+
+  function sendHeight() {
+    window.parent.postMessage({
+      type: 'matlog-rocq-resize',
+      height: document.documentElement.scrollHeight
+    }, window.location.origin);
+  }
+
+  window.addEventListener('load', sendHeight);
+  new ResizeObserver(sendHeight).observe(document.body);
+  sendHeight();
+})();
+</script>
 </body>
 </html>
